@@ -20,7 +20,6 @@ import imgAssisi from "@/assets/esperienza-assisi.jpg";
 import { AtmosphereHero } from "@/components/atmosphere-hero";
 // SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
 import atmosEsperienze from "@/assets/atmos-esperienze.jpg";
-import atmosCtaNotte from "@/assets/atmos-cta-notte.jpg";
 
 export const Route = createFileRoute("/esperienze")({
   component: Esperienze,
@@ -312,20 +311,8 @@ function Esperienze() {
         </div>
       </Reveal>
 
-      {/* CTA FINALE — notte arricchita da SFONDO ATMOSFERA scuro */}
-      <Reveal as="section" className="notte-aura relative overflow-hidden bg-[var(--notte)] py-16 text-[var(--avorio)] md:py-20">
-        {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
-        <img
-          src={atmosCtaNotte}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          decoding="async"
-          width={1920}
-          height={1080}
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
-        />
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[var(--notte)]/75" />
+      {/* CTA FINALE — compatta, fondo scuro sobrio */}
+      <Reveal as="section" className="relative bg-[var(--notte)] py-20 text-[var(--avorio)] md:py-24">
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Non trovi quello che cerchi?{" "}
