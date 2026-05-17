@@ -64,8 +64,12 @@ function Index() {
         </Parallax>
         {/* Velo: parte più scuro e si schiarisce al mount. */}
         <div
-          className="hero-veil absolute inset-0 bg-gradient-to-b from-[var(--notte)]/70 via-[var(--notte)]/40 to-[var(--notte)]/85"
-          style={{ opacity: heroMounted ? 1 : 1.6 }}
+          className="absolute inset-0 bg-gradient-to-b from-[var(--notte)]/70 via-[var(--notte)]/40 to-[var(--notte)]/85"
+        />
+        {/* Overlay scuro che si dissolve al mount per far "emergere" l'immagine. */}
+        <div
+          className="hero-veil absolute inset-0 bg-[var(--notte)] pointer-events-none"
+          style={{ opacity: heroMounted ? 0 : 0.55 }}
         />
         <div className="relative mx-auto flex min-h-[100svh] max-w-5xl flex-col justify-end px-6 pb-20 pt-40 md:px-10 md:pb-28 md:pt-48">
           <h1
