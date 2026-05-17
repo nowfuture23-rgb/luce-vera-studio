@@ -8,6 +8,11 @@ import {
 import { testimonianze } from "@/lib/testimonianze";
 import { abs } from "@/lib/site";
 import { SealMark } from "@/components/seal-mark";
+import { AtmosphereHero, AtmosphereBand } from "@/components/atmosphere-hero";
+import { Reveal } from "@/components/reveal";
+// SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
+import atmosTestim from "@/assets/atmos-testimonianze.jpg";
+import atmosCammino from "@/assets/atmos-cammino.jpg";
 
 export const Route = createFileRoute("/testimonianze")({
   component: TestimonianzePage,
@@ -82,10 +87,20 @@ function TestimonianzaItem({
 }
 
 function TestimonianzePage() {
+  const mid = Math.floor(testimonianze.length / 2);
+  const primaParte = testimonianze.slice(0, mid);
+  const secondaParte = testimonianze.slice(mid);
   return (
     <div className="bg-[var(--avorio)]">
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-32 pb-12 md:pt-40 md:pb-16">
+      {/* Hero con SFONDO ATMOSFERA */}
+      <AtmosphereHero
+        image={atmosTestim}
+        alt="Atmosfera di colline all'alba con foschia dorata"
+        tone="scuro"
+        eager
+        minH="min-h-[60svh]"
+        className="pt-32 pb-12 md:pt-40 md:pb-16"
+      >
         <SealMark
           tone="oro"
           className="pointer-events-none absolute -left-32 -top-24 z-0 h-[460px] w-[460px] opacity-[0.08] md:h-[600px] md:w-[600px]"
@@ -94,25 +109,25 @@ function TestimonianzePage() {
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Testimonianze
           </p>
-          <h1 className="mt-6 font-display text-4xl leading-tight md:text-6xl">
+          <h1 className="mt-6 font-display text-4xl leading-tight text-[var(--avorio)] md:text-6xl">
             Le parole di chi ha <span className="italic-oro">camminato</span>
           </h1>
-          <p className="mt-8 font-display text-lg italic leading-relaxed text-foreground/80 md:text-xl">
+          <p className="mt-8 font-display text-lg italic leading-relaxed text-[var(--avorio)]/85 md:text-xl">
             Non recensioni. Lettere di chi ha fatto un tratto di strada. Le
             riporto come sono state scritte.
           </p>
         </div>
-      </section>
+      </AtmosphereHero>
 
       {/* Riga di contesto */}
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-3xl px-6 pt-12">
         <p className="text-center font-display text-sm italic text-foreground/50">
           Testimonianze raccolte negli anni dai percorsi di meditazione e Raja
           Yoga.
         </p>
       </div>
 
-      {/* Lista */}
+      {/* Lista — prima parte */}
       <section className="relative overflow-hidden py-12 md:py-20">
         <SealMark
           tone="oro"
@@ -120,7 +135,32 @@ function TestimonianzePage() {
         />
         <div className="relative z-10 mx-auto max-w-2xl px-6">
           <div className="divide-y divide-[var(--notte)]/10">
-            {testimonianze.map((t) => (
+            {primaParte.map((t) => (
+              <TestimonianzaItem
+                key={t.id}
+                cite={t.cite}
+                estratto={t.estratto}
+                testo={t.testo}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SFONDO ATMOSFERA intermedio — spezza la lista, no nuovo copy */}
+      <Reveal>
+        <AtmosphereBand
+          image={atmosCammino}
+          alt="Atmosfera di sentiero in pietra tra la nebbia"
+          tone="scuro"
+        />
+      </Reveal>
+
+      {/* Lista — seconda parte */}
+      <section className="relative overflow-hidden py-12 md:py-20">
+        <div className="relative z-10 mx-auto max-w-2xl px-6">
+          <div className="divide-y divide-[var(--notte)]/10">
+            {secondaParte.map((t) => (
               <TestimonianzaItem
                 key={t.id}
                 cite={t.cite}
