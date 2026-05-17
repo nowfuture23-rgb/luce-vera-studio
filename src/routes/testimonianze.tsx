@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/collapsible";
 import { testimonianze } from "@/lib/testimonianze";
 import { abs } from "@/lib/site";
+import { SealMark } from "@/components/seal-mark";
 
 export const Route = createFileRoute("/testimonianze")({
   component: TestimonianzePage,
@@ -84,8 +85,12 @@ function TestimonianzePage() {
   return (
     <div className="bg-[var(--avorio)]">
       {/* Hero */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      <section className="relative overflow-hidden pt-32 pb-12 md:pt-40 md:pb-16">
+        <SealMark
+          tone="oro"
+          className="pointer-events-none absolute -left-32 -top-24 z-0 h-[460px] w-[460px] opacity-[0.05] md:h-[600px] md:w-[600px]"
+        />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Testimonianze
           </p>
