@@ -102,14 +102,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "it_IT" },
       { name: "twitter:card", content: "summary" },
-      { title: "Semi di Luce - In Cammino  -" },
-      { property: "og:title", content: "Semi di Luce - In Cammino  -" },
-      { name: "twitter:title", content: "Semi di Luce - In Cammino  -" },
-      { name: "description", content: "A multi-page Italian website for meditation and Raja Yoga teacher Andrea Detommaso." },
-      { property: "og:description", content: "A multi-page Italian website for meditation and Raja Yoga teacher Andrea Detommaso." },
-      { name: "twitter:description", content: "A multi-page Italian website for meditation and Raja Yoga teacher Andrea Detommaso." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a392fe24-430a-45f7-9da7-b3bb557f7525/id-preview-115fc3bf--743a8f4e-8ac2-4531-8cc8-6c719711c47c.lovable.app-1779005997606.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a392fe24-430a-45f7-9da7-b3bb557f7525/id-preview-115fc3bf--743a8f4e-8ac2-4531-8cc8-6c719711c47c.lovable.app-1779005997606.png" },
     ],
     links: [
       {
