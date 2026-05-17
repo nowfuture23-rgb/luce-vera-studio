@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SensoryDivider } from "@/components/sensory-divider";
 import { getScritto, scritti } from "@/lib/scritti";
 import { abs } from "@/lib/site";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/scritti/$slug")({
   component: ScrittoArticolo,
@@ -58,7 +59,7 @@ function ScrittoArticolo() {
   return (
     <article className="bg-[var(--avorio)]">
       {/* Header articolo */}
-      <header className="pt-32 pb-12 md:pt-40 md:pb-16">
+      <Reveal as="header" className="pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="mx-auto max-w-2xl px-6">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             {scritto.categoria}
@@ -70,10 +71,10 @@ function ScrittoArticolo() {
             {scritto.data}
           </p>
         </div>
-      </header>
+      </Reveal>
 
       {/* Corpo articolo */}
-      <div className="pb-16 md:pb-24">
+      <Reveal className="pb-16 md:pb-24">
         <div className="mx-auto max-w-2xl px-6">
           <p className="font-display text-lg italic leading-relaxed text-foreground/60 md:text-xl">
             [Contenuto di esempio. Il testo reale di questo scritto sarà
@@ -109,15 +110,17 @@ function ScrittoArticolo() {
             </p>
           </div>
         </div>
-      </div>
+      </Reveal>
 
       {/* Chiusura sensoriale */}
-      <SensoryDivider>
-        Si torna sempre al passo. È il passo che insegna.
-      </SensoryDivider>
+      <Reveal>
+        <SensoryDivider>
+          Si torna sempre al passo. È il passo che insegna.
+        </SensoryDivider>
+      </Reveal>
 
       {/* Invito discreto */}
-      <div className="bg-[var(--avorio)] pb-24 md:pb-32">
+      <Reveal className="bg-[var(--avorio)] pb-24 md:pb-32">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <p className="text-base leading-relaxed text-foreground/75 md:text-lg">
             Se queste parole risuonano,{" "}
@@ -130,7 +133,7 @@ function ScrittoArticolo() {
             .
           </p>
         </div>
-      </div>
+      </Reveal>
     </article>
   );
 }

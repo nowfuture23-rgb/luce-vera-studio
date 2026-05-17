@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { abs } from "@/lib/site";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/contatti")({
   component: ContattiPage,
@@ -83,7 +84,7 @@ function ContattiPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[var(--avorio)] pt-32 pb-16 md:pt-40 md:pb-20">
+      <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-16 md:pt-40 md:pb-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Contatti
@@ -96,10 +97,10 @@ function ContattiPage() {
             Ogni cammino parte da una conversazione. Raccontami dove sei: ti rispondo io, personalmente.
           </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* FORM */}
-      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+      <Reveal as="section" className="bg-[var(--avorio)] pb-24 md:pb-32">
         <div className="mx-auto max-w-xl px-6">
           <form onSubmit={onSubmit} noValidate className="flex flex-col gap-8">
             <div className="flex flex-col gap-2">
@@ -224,10 +225,10 @@ function ContattiPage() {
             )}
           </form>
         </div>
-      </section>
+      </Reveal>
 
       {/* RECAPITI DIRETTI */}
-      <section className="bg-[var(--avorio)] border-t border-[var(--notte)]/10 py-20 md:py-28">
+      <Reveal as="section" className="bg-[var(--avorio)] border-t border-[var(--notte)]/10 py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Recapiti diretti
@@ -283,7 +284,7 @@ function ContattiPage() {
             </div>
           </dl>
         </div>
-      </section>
+      </Reveal>
     </>
   );
 }
