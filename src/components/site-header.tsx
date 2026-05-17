@@ -1,5 +1,5 @@
-import { Link, useLocation } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { to: "/il-cammino", label: "Il Cammino" },
@@ -12,17 +12,33 @@ const navItems = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const heroScuro = location.pathname === "/";
-  const logoColor = heroScuro ? "text-background" : "text-[var(--notte)]";
-  const navColor = heroScuro
-    ? "text-background/85"
-    : "text-[var(--notte)]/75";
-  const mobileBtnColor = heroScuro ? "text-background" : "text-[var(--notte)]";
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 48);
+        ticking = false;
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header
+      className={`sticky top-0 left-0 right-0 z-50 transition-colors duration-[250ms] ${
+        scrolled
+          ? "bg-[var(--notte)]/85 supports-[backdrop-filter]:backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10 md:py-8">
-        <Link to="/" className={`font-display text-xl tracking-wide ${logoColor} md:text-2xl`}>
+        <Link to="/" className="font-display text-xl tracking-wide text-[var(--avorio)] md:text-2xl">
           Semi <span className="italic-oro">di Luce</span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
@@ -30,7 +46,7 @@ export function SiteHeader() {
             <Link
               key={i.to}
               to={i.to}
-              className={`text-sm tracking-wide ${navColor} transition-colors hover:text-[var(--oro)]`}
+              className="text-sm tracking-wide text-[var(--avorio)]/85 transition-colors hover:text-[var(--oro)]"
               activeProps={{ className: "text-[var(--oro)]" }}
             >
               {i.label}
@@ -40,7 +56,7 @@ export function SiteHeader() {
         <button
           aria-label="Apri menù"
           onClick={() => setOpen((v) => !v)}
-          className={`${mobileBtnColor} md:hidden`}
+          className="text-[var(--avorio)] md:hidden"
         >
           <span className="block h-px w-7 bg-current" />
           <span className="mt-1.5 block h-px w-7 bg-current" />
