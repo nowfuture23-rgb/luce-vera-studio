@@ -52,9 +52,7 @@ export function AtmosphereHero({
             : "absolute inset-0 bg-gradient-to-b from-[var(--avorio)]/85 via-[var(--avorio)]/70 to-[var(--avorio)]/90"
         }
       />
-      <div className="relative z-10 flex min-h-inherit h-full w-full items-center">
-        {children}
-      </div>
+      <div className="relative z-10 w-full">{children}</div>
     </section>
   );
 }
