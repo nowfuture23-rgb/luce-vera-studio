@@ -28,7 +28,7 @@ export function AtmosphereHero({
   return (
     <section
       className={`relative w-full overflow-hidden ${minH} ${
-        isScuro ? "bg-[var(--notte)] text-[var(--avorio)]" : "bg-[var(--avorio)]"
+        isScuro ? "bg-[#1a1a1a] text-[var(--avorio)]" : "bg-[var(--avorio)]"
       } ${className}`}
     >
       {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
@@ -39,17 +39,15 @@ export function AtmosphereHero({
         decoding="async"
         width={1920}
         height={1080}
-        className={`absolute inset-0 h-full w-full object-cover ${
-          isScuro ? "opacity-80" : "opacity-75"
-        }`}
+        className="absolute inset-0 h-full w-full object-cover"
       />
-      {/* Velo gradiente per contrasto AA */}
+      {/* Velo localizzato solo nella fascia bassa, dove poggia il testo (contrasto AA) */}
       <div
         aria-hidden
         className={
           isScuro
-            ? "absolute inset-0 bg-gradient-to-b from-[var(--notte)]/15 via-[var(--notte)]/35 to-[var(--notte)]/80"
-            : "absolute inset-0 bg-gradient-to-b from-[var(--avorio)]/40 via-[var(--avorio)]/55 to-[var(--avorio)]/85"
+            ? "absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--notte)]/55"
+            : "absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--avorio)]/55"
         }
       />
       <div className="relative z-10 w-full [text-shadow:0_1px_2px_rgb(0_0_0_/_0.25)]">
@@ -81,7 +79,7 @@ export function AtmosphereBand({
   return (
     <section
       className={`relative w-full overflow-hidden ${
-        isScuro ? "bg-[var(--notte)] text-[var(--avorio)]" : "bg-[var(--avorio)]"
+        isScuro ? "bg-[#1a1a1a] text-[var(--avorio)]" : "bg-[var(--avorio)]"
       } ${className}`}
     >
       {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
@@ -92,20 +90,18 @@ export function AtmosphereBand({
         decoding="async"
         width={1920}
         height={1080}
-        className={`absolute inset-0 h-full w-full object-cover ${
-          isScuro ? "opacity-55" : "opacity-50"
-        }`}
-      />
-      <div
-        aria-hidden
-        className={
-          isScuro
-            ? "absolute inset-0 bg-gradient-to-b from-[var(--notte)]/60 via-[var(--notte)]/50 to-[var(--notte)]/75"
-            : "absolute inset-0 bg-gradient-to-b from-[var(--avorio)]/80 via-[var(--avorio)]/65 to-[var(--avorio)]/85"
-        }
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="relative z-10 min-h-[36svh] flex items-center justify-center py-20 md:min-h-[44svh] md:py-28">
-        {children}
+        {children ? (
+          <div
+            className={`max-w-3xl px-6 py-4 rounded-sm [text-shadow:0_1px_2px_rgb(0_0_0_/_0.25)] ${
+              isScuro ? "bg-[var(--notte)]/55" : "bg-[var(--avorio)]/55"
+            }`}
+          >
+            {children}
+          </div>
+        ) : null}
       </div>
     </section>
   );
