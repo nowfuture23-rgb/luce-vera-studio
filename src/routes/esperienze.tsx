@@ -197,7 +197,7 @@ function Esperienze() {
                 className="flex h-full flex-col overflow-hidden rounded-none border border-[var(--notte)]/10 bg-[var(--avorio)] shadow-none"
               >
                 {/* IMMAGINE PROVVISORIA — generata da AI, sostituire con foto reale */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--notte)]/10">
+                <div className="media-frame media-frame-hover relative aspect-[4/3] w-full overflow-hidden bg-[var(--notte)]/10">
                   <img
                     src={e.image}
                     alt={e.alt}
@@ -206,7 +206,7 @@ function Esperienze() {
                     height={768}
                     className="h-full w-full object-cover"
                   />
-                  <span className="absolute left-3 top-3 bg-[var(--avorio)]/90 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-[var(--notte)]/70">
+                  <span className="media-badge absolute left-3 top-3 bg-[var(--avorio)]/90 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-[var(--notte)]/70">
                     immagine provvisoria
                   </span>
                 </div>
@@ -302,7 +302,7 @@ function Esperienze() {
       </Reveal>
 
       {/* CTA FINALE */}
-      <Reveal as="section" className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="notte-aura bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Non trovi quello che cerchi?{" "}
