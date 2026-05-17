@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { abs } from "@/lib/site";
 
 export const Route = createFileRoute("/esperienze")({
   component: Esperienze,
@@ -25,9 +26,9 @@ export const Route = createFileRoute("/esperienze")({
         content:
           "Corsi, ritiri e cammini lungo le tre vie del Progetto Semi di Luce. Filtra per via ed esplora il calendario.",
       },
-      { property: "og:url", content: "/esperienze" },
+      { property: "og:url", content: abs("/esperienze") },
     ],
-    links: [{ rel: "canonical", href: "/esperienze" }],
+    links: [{ rel: "canonical", href: abs("/esperienze") }],
   }),
 });
 

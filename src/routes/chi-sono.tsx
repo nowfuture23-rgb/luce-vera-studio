@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import ritratto from "@/assets/andrea-ritratto.jpg";
 import { SensoryDivider } from "@/components/sensory-divider";
 import { MarqueeLuoghi } from "@/components/marquee-luoghi";
+import { abs } from "@/lib/site";
 
 export const Route = createFileRoute("/chi-sono")({
   component: ChiSono,
@@ -19,9 +20,9 @@ export const Route = createFileRoute("/chi-sono")({
         content:
           "Quindici anni di pratica e insegnamento. Il percorso di Andrea Detommaso, in tre tappe.",
       },
-      { property: "og:url", content: "/chi-sono" },
+      { property: "og:url", content: abs("/chi-sono") },
     ],
-    links: [{ rel: "canonical", href: "/chi-sono" }],
+    links: [{ rel: "canonical", href: abs("/chi-sono") }],
   }),
 });
 

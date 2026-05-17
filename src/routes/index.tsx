@@ -6,6 +6,7 @@ import porta2 from "@/assets/porta-natura.jpg";
 import porta3 from "@/assets/porta-vie.jpg";
 import { MarqueeLuoghi } from "@/components/marquee-luoghi";
 import { SensoryDivider } from "@/components/sensory-divider";
+import { SITE_URL, abs } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/")({
         content:
           "Una sola Via: pratica interiore, Natura e luoghi di Luce. Quindici anni di insegnamento.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: abs("/") },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: abs("/") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -34,6 +35,7 @@ export const Route = createFileRoute("/")({
           "@type": "Person",
           name: "Andrea Detommaso",
           jobTitle: "Insegnante di Meditazione e Raja Yoga",
+          url: SITE_URL,
           description:
             "Fondatore di Progetto Semi di Luce. Accompagna persone attraverso pratica interiore, Natura e luoghi sacri.",
         }),
@@ -103,7 +105,7 @@ function Index() {
                 roman: "I",
                 titolo: "La Pratica",
                 img: porta1,
-                alt: "Meditazione di gruppo in una sala in legno",
+                alt: "Persona in meditazione seduta, luce naturale",
                 testo:
                   "Meditazione e Raja Yoga. Il lavoro quotidiano che cambia, da dentro, il modo in cui vivi tutto il resto.",
               },
@@ -111,7 +113,7 @@ function Index() {
                 roman: "II",
                 titolo: "La Natura",
                 img: porta2,
-                alt: "Cammino a piedi nudi in una faggeta",
+                alt: "Sentiero nel bosco lungo il Fiume Lao",
                 testo:
                   "Il Libro della Natura vissuto: immersioni, cammini, il suono delle piante. Dove la pratica diventa esperienza.",
               },
@@ -119,7 +121,7 @@ function Index() {
                 roman: "III",
                 titolo: "Le Vie di Luce",
                 img: porta3,
-                alt: "Sentiero in pietra verso un santuario al tramonto",
+                alt: "Cammino di pellegrinaggio verso un luogo sacro",
                 testo:
                   "I viaggi dell'anima nei luoghi sacri. Là dove il cammino accelera e il cuore ricorda la strada.",
               },

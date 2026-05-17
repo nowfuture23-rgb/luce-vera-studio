@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { abs } from "@/lib/site";
 
 export const Route = createFileRoute("/contatti")({
   component: ContattiPage,
@@ -28,9 +29,9 @@ export const Route = createFileRoute("/contatti")({
         content:
           "Ogni cammino parte da una conversazione. Raccontami dove sei: ti rispondo io, personalmente.",
       },
-      { property: "og:url", content: "/contatti" },
+      { property: "og:url", content: abs("/contatti") },
     ],
-    links: [{ rel: "canonical", href: "/contatti" }],
+    links: [{ rel: "canonical", href: abs("/contatti") }],
   }),
 });
 
