@@ -15,6 +15,7 @@ import { Route as EsperienzeRouteImport } from './routes/esperienze'
 import { Route as ContattiRouteImport } from './routes/contatti'
 import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ScrittiSlugRouteImport } from './routes/scritti.$slug'
 
 const ScrittiRoute = ScrittiRouteImport.update({
   id: '/scritti',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScrittiSlugRoute = ScrittiSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ScrittiRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +59,8 @@ export interface FileRoutesByFullPath {
   '/contatti': typeof ContattiRoute
   '/esperienze': typeof EsperienzeRoute
   '/il-cammino': typeof IlCamminoRoute
-  '/scritti': typeof ScrittiRoute
+  '/scritti': typeof ScrittiRouteWithChildren
+  '/scritti/$slug': typeof ScrittiSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +68,8 @@ export interface FileRoutesByTo {
   '/contatti': typeof ContattiRoute
   '/esperienze': typeof EsperienzeRoute
   '/il-cammino': typeof IlCamminoRoute
-  '/scritti': typeof ScrittiRoute
+  '/scritti': typeof ScrittiRouteWithChildren
+  '/scritti/$slug': typeof ScrittiSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,7 +78,8 @@ export interface FileRoutesById {
   '/contatti': typeof ContattiRoute
   '/esperienze': typeof EsperienzeRoute
   '/il-cammino': typeof IlCamminoRoute
-  '/scritti': typeof ScrittiRoute
+  '/scritti': typeof ScrittiRouteWithChildren
+  '/scritti/$slug': typeof ScrittiSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/esperienze'
     | '/il-cammino'
     | '/scritti'
+    | '/scritti/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/esperienze'
     | '/il-cammino'
     | '/scritti'
+    | '/scritti/$slug'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/esperienze'
     | '/il-cammino'
     | '/scritti'
+    | '/scritti/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -105,7 +117,7 @@ export interface RootRouteChildren {
   ContattiRoute: typeof ContattiRoute
   EsperienzeRoute: typeof EsperienzeRoute
   IlCamminoRoute: typeof IlCamminoRoute
-  ScrittiRoute: typeof ScrittiRoute
+  ScrittiRoute: typeof ScrittiRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -152,8 +164,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/scritti/$slug': {
+      id: '/scritti/$slug'
+      path: '/$slug'
+      fullPath: '/scritti/$slug'
+      preLoaderRoute: typeof ScrittiSlugRouteImport
+      parentRoute: typeof ScrittiRoute
+    }
   }
 }
+
+interface ScrittiRouteChildren {
+  ScrittiSlugRoute: typeof ScrittiSlugRoute
+}
+
+const ScrittiRouteChildren: ScrittiRouteChildren = {
+  ScrittiSlugRoute: ScrittiSlugRoute,
+}
+
+const ScrittiRouteWithChildren =
+  ScrittiRoute._addFileChildren(ScrittiRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -161,8 +191,18 @@ const rootRouteChildren: RootRouteChildren = {
   ContattiRoute: ContattiRoute,
   EsperienzeRoute: EsperienzeRoute,
   IlCamminoRoute: IlCamminoRoute,
-  ScrittiRoute: ScrittiRoute,
+  ScrittiRoute: ScrittiRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
