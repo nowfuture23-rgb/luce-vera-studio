@@ -1,13 +1,166 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import porta1 from "@/assets/porta-pratica.jpg";
+import porta2 from "@/assets/porta-natura.jpg";
+import porta3 from "@/assets/porta-vie.jpg";
+import { SensoryDivider } from "@/components/sensory-divider";
 
 export const Route = createFileRoute("/il-cammino")({
-  component: () => (
-    <div className="bg-[var(--avorio)] pt-40 pb-32">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <h1 className="font-display text-4xl md:text-5xl">Il Cammino</h1>
-        <p className="mt-6 text-foreground/70">In arrivo.</p>
-      </div>
-    </div>
-  ),
-  head: () => ({ meta: [{ title: "Il Cammino — Progetto Semi di Luce" }] }),
+  component: IlCammino,
+  head: () => ({
+    meta: [
+      { title: "Il Cammino — Progetto Semi di Luce" },
+      {
+        name: "description",
+        content:
+          "Una sola Via, in tre movimenti: Pratica, Natura e Vie di Luce. Il cammino di Andrea Detommaso.",
+      },
+      { property: "og:title", content: "Il Cammino — Progetto Semi di Luce" },
+      {
+        property: "og:description",
+        content:
+          "Meditazione, Natura e luoghi di Luce: lo stesso cammino visto da tre finestre.",
+      },
+      { property: "og:url", content: "/il-cammino" },
+    ],
+    links: [{ rel: "canonical", href: "/il-cammino" }],
+  }),
 });
+
+type Pilastro = {
+  numeral: string;
+  title: string;
+  body: string;
+  image: string;
+  alt: string;
+};
+
+const pilastri: Pilastro[] = [
+  {
+    numeral: "I",
+    title: "La Pratica",
+    image: porta1,
+    alt: "La pratica interiore",
+    body:
+      "Meditazione e Raja Yoga. È la base: il lavoro interiore quotidiano, le fondamenta. I tre corsi, il Raja Yoga avanzato, la pratica che resta con te ogni giorno. Senza questa base, tutto il resto è solo turismo.",
+  },
+  {
+    numeral: "II",
+    title: "La Natura",
+    image: porta2,
+    alt: "Natura Alchemica Experience",
+    body:
+      "Natura Alchemica Experience. Il Libro della Natura vissuto, non spiegato: immersioni, cammini, il Fiume Lao, i concerti nel bosco. La pratica esce dalla stanza ed entra nel mondo vivente.",
+  },
+  {
+    numeral: "III",
+    title: "Le Vie di Luce",
+    image: porta3,
+    alt: "Viaggi dell'Anima nei luoghi di Luce",
+    body:
+      "I Viaggi dell'Anima. I luoghi che accelerano il cammino — Monte Sant'Angelo, Assisi e La Verna, Medjugorje — letti come portali, non come pellegrinaggi turistici.",
+  },
+];
+
+function IlCammino() {
+  return (
+    <>
+      {/* HERO testuale */}
+      <section className="bg-[var(--avorio)] pt-40 pb-24 md:pt-48 md:pb-32">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+            Il Cammino
+          </p>
+          <h1 className="mt-8 font-display text-4xl leading-[1.1] text-foreground md:text-6xl">
+            Una sola <span className="italic-oro">Via</span>, in tre movimenti
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-foreground/75 md:text-xl">
+            Meditazione, Natura e luoghi di Luce non sono cose diverse. Sono lo
+            stesso cammino, visto da tre finestre.
+          </p>
+        </div>
+      </section>
+
+      {/* I TRE PILASTRI */}
+      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <div className="flex flex-col gap-24 md:gap-40">
+            {pilastri.map((p, i) => {
+              const reverse = i % 2 === 1;
+              return (
+                <article
+                  key={p.numeral}
+                  className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
+                    reverse ? "md:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+                    <img
+                      src={p.image}
+                      alt={p.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                    {/* placeholder marker */}
+                    <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
+                      immagine segnaposto
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block font-display text-7xl leading-none text-[var(--oro)] md:text-8xl">
+                      {p.numeral}
+                    </span>
+                    <h2 className="mt-6 font-display text-3xl italic text-foreground md:text-4xl">
+                      {p.title}
+                    </h2>
+                    <p className="mt-6 text-lg leading-relaxed text-foreground/80">
+                      {p.body}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* UN SOLO MOVIMENTO */}
+      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <div className="mx-auto mb-12 h-px w-16 bg-[var(--oro)]/60" />
+          <p className="font-display text-2xl leading-snug text-foreground md:text-4xl">
+            La Pratica apre alla{" "}
+            <span className="italic-oro">Natura</span>, la Natura conduce ai{" "}
+            <span className="italic-oro">Viaggi</span>: un solo movimento, con
+            un orizzonte — la Via della{" "}
+            <span className="italic-oro">Coscienza Cristica</span>, intesa come
+            direzione, non come dogma.
+          </p>
+          <div className="mx-auto mt-12 h-px w-16 bg-[var(--oro)]/60" />
+        </div>
+      </section>
+
+      {/* DIVISORE SENSORIALE */}
+      <SensoryDivider>
+        Tutto ciò che è qui, è stato prima attraversato.
+      </SensoryDivider>
+
+      {/* CTA FINALE */}
+      <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            Vediamo da dove puoi iniziare il tuo{" "}
+            <span className="italic-oro">cammino</span>
+          </h2>
+          <div className="mt-10">
+            <Link
+              to="/contatti"
+              className="inline-flex items-center justify-center border border-[var(--oro)] bg-[var(--oro)] px-10 py-4 text-sm uppercase tracking-[0.25em] text-[var(--notte)] transition-colors hover:bg-transparent hover:text-[var(--oro)]"
+            >
+              Scrivimi
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
