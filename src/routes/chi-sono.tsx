@@ -1,13 +1,132 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import ritratto from "@/assets/andrea-ritratto.jpg";
+import { SensoryDivider } from "@/components/sensory-divider";
+import { MarqueeLuoghi } from "@/components/marquee-luoghi";
 
 export const Route = createFileRoute("/chi-sono")({
-  component: () => (
-    <div className="bg-[var(--avorio)] pt-40 pb-32">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <h1 className="font-display text-4xl md:text-5xl capitalize">chi sono</h1>
-        <p className="mt-6 text-foreground/70">In arrivo.</p>
-      </div>
-    </div>
-  ),
-  head: () => ({ meta: [{ title: "Chi sono — Progetto Semi di Luce" }] }),
+  component: ChiSono,
+  head: () => ({
+    meta: [
+      { title: "Chi sono — Progetto Semi di Luce" },
+      {
+        name: "description",
+        content:
+          "Andrea Detommaso: insegnante di Meditazione e Raja Yoga. Dalla ricerca interiore alla trasmissione quotidiana della pratica, in tre tappe.",
+      },
+      { property: "og:title", content: "Chi sono — Progetto Semi di Luce" },
+      {
+        property: "og:description",
+        content:
+          "Quindici anni di pratica e insegnamento. Il percorso di Andrea Detommaso, in tre tappe.",
+      },
+      { property: "og:url", content: "/chi-sono" },
+    ],
+    links: [{ rel: "canonical", href: "/chi-sono" }],
+  }),
 });
+
+type Tappa = { eyebrow: string; title: string; body: string };
+
+const tappe: Tappa[] = [
+  {
+    eyebrow: "L'inizio",
+    title: "Manduria, 1987",
+    body:
+      "Da bambino mi tormentava il «perché» delle cose; da ragazzo quel perché mi ha portato dentro la psicologia, la spiritualità, la ricerca interiore. A diciannove anni sono entrato in una scuola di formazione per terapeuti, e in parallelo ho studiato quattro anni di naturopatia psicosomatica: volevo capire l'essere umano per intero, non a pezzi.",
+  },
+  {
+    eyebrow: "La scelta",
+    title: "2010",
+    body:
+      "Mi sono diplomato e sono diventato insegnante di Meditazione e Raja Yoga. Avrei potuto fare altro. Ho scelto di dedicare il mio tempo intero a una cosa sola: trasmettere la pratica e accompagnare chi cerca. Da allora ho continuato a formarmi — perché chi guida deve restare, prima di tutto, qualcuno che cammina.",
+  },
+  {
+    eyebrow: "Cosa faccio davvero",
+    title: "Quindici anni dopo",
+    body:
+      "Ho accompagnato migliaia di persone a ritrovare il proprio benessere, a conoscersi più a fondo, a smettere di identificarsi con la sofferenza per riconoscersi nella parte migliore di sé. Lo faccio in tre modi, che per me sono uno solo: trasmettendo l'arte della meditazione, portando le persone in Natura, accompagnandole nei luoghi di Luce della Terra.",
+  },
+];
+
+function ChiSono() {
+  return (
+    <>
+      {/* HERO con ritratto */}
+      <section className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+            <img
+              src={ritratto}
+              alt="Ritratto di Andrea Detommaso"
+              width={896}
+              height={1120}
+              className="h-full w-full object-cover"
+            />
+            <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
+              immagine segnaposto
+            </span>
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+              Chi sono
+            </p>
+            <h1 className="mt-8 font-display text-4xl leading-[1.1] text-foreground md:text-5xl lg:text-6xl">
+              Non ho scelto questo lavoro. L'ho{" "}
+              <span className="italic-oro">seguito</span>.
+            </h1>
+            <p className="mt-8 font-display text-xl italic leading-relaxed text-foreground/70 md:text-2xl">
+              L'ho seguito, finché è diventato l'unica cosa che avesse senso fare.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* LE TRE TAPPE */}
+      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="flex flex-col gap-20 md:gap-28">
+            {tappe.map((t) => (
+              <article key={t.title}>
+                <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+                  {t.eyebrow}
+                </p>
+                <h2 className="mt-5 font-display text-3xl leading-tight text-foreground md:text-4xl">
+                  {t.title}
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-foreground/80">
+                  {t.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PULL-QUOTE via SensoryDivider */}
+      <SensoryDivider>
+        Si possono capire, aiutare e amare gli altri solo nella misura in cui si capisce, si aiuta e si ama se stessi.
+      </SensoryDivider>
+
+      {/* MARQUEE LUOGHI */}
+      <MarqueeLuoghi />
+
+      {/* CTA FINALE */}
+      <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            Se è questo che cerchi, siamo nel posto{" "}
+            <span className="italic-oro">giusto</span>
+          </h2>
+          <div className="mt-10">
+            <Link
+              to="/contatti"
+              className="inline-flex items-center justify-center border border-[var(--oro)] bg-[var(--oro)] px-10 py-4 text-sm uppercase tracking-[0.25em] text-[var(--notte)] transition-colors hover:bg-transparent hover:text-[var(--oro)]"
+            >
+              Scrivimi
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
