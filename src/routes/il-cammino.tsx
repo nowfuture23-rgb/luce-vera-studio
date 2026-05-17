@@ -6,6 +6,7 @@ import { SensoryDivider } from "@/components/sensory-divider";
 import { abs } from "@/lib/site";
 import { Reveal, Parallax } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
+import { SealMark } from "@/components/seal-mark";
 
 export const Route = createFileRoute("/il-cammino")({
   component: IlCammino,
@@ -103,7 +104,7 @@ function IlCammino() {
                     reverse ? "md:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  <Parallax className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+                  <Parallax className="media-frame relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
                     {/* IMMAGINE PROVVISORIA — sostituire con foto reale */}
                     <img
                       src={p.image}
@@ -111,7 +112,7 @@ function IlCammino() {
                       loading="lazy"
                       className="h-full w-full object-cover"
                     />
-                    <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
+                    <span className="media-badge absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
                       immagine provvisoria
                     </span>
                   </Parallax>
@@ -134,8 +135,12 @@ function IlCammino() {
       </section>
 
       {/* UN SOLO MOVIMENTO */}
-      <Reveal as="section" className="bg-[var(--avorio)] pb-24 md:pb-32">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      <Reveal as="section" className="relative overflow-hidden bg-[var(--avorio)] pb-24 md:pb-32">
+        <SealMark
+          tone="oro"
+          className="pointer-events-none absolute -right-32 -top-20 z-0 h-[480px] w-[480px] opacity-[0.05] md:h-[640px] md:w-[640px]"
+        />
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <div className="mx-auto mb-12 h-px w-16 bg-[var(--oro)]/60" />
           <p className="font-display text-2xl leading-snug text-foreground md:text-4xl">
             La Pratica apre alla{" "}
@@ -155,7 +160,7 @@ function IlCammino() {
       </SensoryDivider>
 
       {/* CTA FINALE */}
-      <Reveal as="section" className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="notte-aura bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Vediamo da dove puoi iniziare il tuo{" "}
