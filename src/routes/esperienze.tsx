@@ -2,6 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/esperienze")({
   component: Esperienze,
@@ -68,6 +74,33 @@ const esperienze: Esperienza[] = [
 ];
 
 const filtri: Filtro[] = ["Tutte", "La Pratica", "La Natura", "Le Vie di Luce"];
+
+const faq: { q: string; a: string }[] = [
+  {
+    q: "Come funziona l'iscrizione a un corso o a un ritiro?",
+    a: "Si parte sempre da un contatto diretto. Mi scrivi, capiamo insieme se l'esperienza è giusta per te in questo momento, e da lì organizziamo l'iscrizione. Non c'è un carrello anonimo: ogni percorso inizia da una conversazione.",
+  },
+  {
+    q: "Serve esperienza precedente per partecipare?",
+    a: "Dipende dall'esperienza. I corsi di fondamenti sono pensati per chi parte da zero; alcuni percorsi avanzati richiedono una pratica già avviata. Se non sei sicuro, chiedimelo: ti dico con onestà se è il momento giusto.",
+  },
+  {
+    q: "I ritiri e i cammini sono adatti a tutti?",
+    a: "Sono esperienze aperte ma non leggere: chiedono presenza e disponibilità interiore. Non serve essere atleti né esperti di spiritualità. Serve la volontà sincera di esserci davvero. Per ogni ritiro ti spiego prima cosa aspettarti.",
+  },
+  {
+    q: "Quanto costano le esperienze?",
+    a: "Ogni esperienza ha un suo contributo, che ti comunico in fase di contatto insieme a tutti i dettagli pratici. Il prezzo dipende da durata, luogo e tipo di percorso.",
+  },
+  {
+    q: "Dove si svolgono?",
+    a: "Dipende dall'esperienza: alcuni corsi sono ricorrenti, i cammini e i ritiri si tengono nei luoghi che fanno parte del percorso — dal Fiume Lao ai luoghi di Luce come Assisi, La Verna, Medjugorje. Il luogo preciso è sempre indicato per ogni data.",
+  },
+  {
+    q: "Posso proporti un'esperienza per un gruppo già formato?",
+    a: "Sì. Se hai un gruppo — un'associazione, un cerchio, una realtà già esistente — possiamo costruire un'esperienza dedicata. Scrivimi e ne parliamo.",
+  },
+];
 
 function Esperienze() {
   const [attivo, setAttivo] = useState<Filtro>("Tutte");
@@ -171,6 +204,64 @@ function Esperienze() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-[var(--avorio)] py-24 md:py-32">
+        <div className="mx-auto max-w-3xl px-6 md:px-10">
+          <div className="text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+              Domande
+            </p>
+            <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+              Prima di <span className="italic-oro">scrivermi</span>
+            </h2>
+          </div>
+
+          <Accordion type="single" collapsible className="mt-14">
+            {faq.map((item, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="border-b border-[var(--notte)]/15"
+              >
+                <AccordionTrigger className="py-6 font-display text-xl leading-snug text-foreground md:text-2xl hover:no-underline">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 pt-0 text-base leading-relaxed text-foreground/80 md:text-[1.05rem]">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* PRENOTAZIONI — predisposizione */}
+      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+            Prenotazioni
+          </p>
+          <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+            Come si prenota
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
+            Per ora ogni esperienza si prenota scrivendomi direttamente: ti
+            rispondo io, valutiamo insieme e ti guido all'iscrizione. Presto
+            questa sezione ospiterà la prenotazione e il pagamento online,
+            esperienza per esperienza.
+          </p>
+          {/* PUNTO DI AGGANCIO: qui andrà il sistema di prenotazione/pagamento per esperienza — vedi array `esperienze` */}
+          <div className="mt-8">
+            <Link
+              to="/contatti"
+              className="text-sm uppercase tracking-[0.25em] text-[var(--notte)]/70 underline decoration-[var(--oro)]/60 decoration-1 underline-offset-[6px] transition-colors hover:text-[var(--oro)]"
+            >
+              Scrivimi
+            </Link>
           </div>
         </div>
       </section>
