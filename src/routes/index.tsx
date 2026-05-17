@@ -153,7 +153,7 @@ function Index() {
                 to="/il-cammino"
                 className="porta-card group block"
               >
-                <div className="media-frame relative aspect-[3/4] overflow-hidden bg-[var(--notte)]">
+                <div className="media-frame group-hover-zoom relative aspect-[3/4] overflow-hidden bg-[var(--notte)]">
                   {/* IMMAGINE PROVVISORIA — sostituire con foto reale */}
                   <img
                     src={p.img}
