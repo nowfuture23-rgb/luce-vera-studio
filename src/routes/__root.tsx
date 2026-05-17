@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,6 +12,28 @@ import {
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ROUTE_FADE_DURATION, EASING } from "@/lib/motion";
+
+/**
+ * RouteFade — wrapper minimo attorno all'<Outlet/>. Su cambio rotta
+ * applica un breve fade-in (opacity). Con prefers-reduced-motion:
+ * reduce il fade è disattivato via media query CSS.
+ */
+function RouteFade({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  return (
+    <div
+      key={location.pathname}
+      className="route-fade"
+      style={{
+        animationDuration: `${ROUTE_FADE_DURATION}ms`,
+        animationTimingFunction: EASING,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -128,7 +151,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SiteHeader />
       <main>
-        <Outlet />
+        <RouteFade>
+          <Outlet />
+        </RouteFade>
       </main>
       <SiteFooter />
     </QueryClientProvider>
