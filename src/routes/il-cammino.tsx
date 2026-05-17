@@ -4,6 +4,8 @@ import porta2 from "@/assets/porta-natura.jpg";
 import porta3 from "@/assets/porta-vie.jpg";
 import { SensoryDivider } from "@/components/sensory-divider";
 import { abs } from "@/lib/site";
+import { Reveal, Parallax } from "@/components/reveal";
+import { REVEAL_STAGGER } from "@/lib/motion";
 
 export const Route = createFileRoute("/il-cammino")({
   component: IlCammino,
@@ -33,6 +35,8 @@ type Pilastro = {
   body: string;
   image: string;
   alt: string;
+  /** IMMAGINE PROVVISORIA — sostituire con foto reale di Andrea */
+  placeholder: true;
 };
 
 const pilastri: Pilastro[] = [
@@ -41,6 +45,7 @@ const pilastri: Pilastro[] = [
     title: "La Pratica",
     image: porta1,
     alt: "Persona in meditazione seduta, luce naturale",
+    placeholder: true,
     body:
       "Meditazione e Raja Yoga. È la base: il lavoro interiore quotidiano, le fondamenta. I tre corsi, il Raja Yoga avanzato, la pratica che resta con te ogni giorno. Senza questa base, tutto il resto è solo turismo.",
   },
@@ -49,6 +54,7 @@ const pilastri: Pilastro[] = [
     title: "La Natura",
     image: porta2,
     alt: "Sentiero nel bosco lungo il Fiume Lao",
+    placeholder: true,
     body:
       "Natura Alchemica Experience. Il Libro della Natura vissuto, non spiegato: immersioni, cammini, il Fiume Lao, i concerti nel bosco. La pratica esce dalla stanza ed entra nel mondo vivente.",
   },
@@ -57,6 +63,7 @@ const pilastri: Pilastro[] = [
     title: "Le Vie di Luce",
     image: porta3,
     alt: "Cammino di pellegrinaggio verso un luogo sacro",
+    placeholder: true,
     body:
       "I Viaggi dell'Anima. I luoghi che accelerano il cammino — Monte Sant'Angelo, Assisi e La Verna, Medjugorje — letti come portali, non come pellegrinaggi turistici.",
   },
@@ -66,7 +73,7 @@ function IlCammino() {
   return (
     <>
       {/* HERO testuale */}
-      <section className="bg-[var(--avorio)] pt-40 pb-24 md:pt-48 md:pb-32">
+      <Reveal as="section" className="bg-[var(--avorio)] pt-40 pb-24 md:pt-48 md:pb-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Il Cammino
@@ -79,7 +86,7 @@ function IlCammino() {
             stesso cammino, visto da tre finestre.
           </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* I TRE PILASTRI */}
       <section className="bg-[var(--avorio)] pb-24 md:pb-32">
@@ -88,24 +95,26 @@ function IlCammino() {
             {pilastri.map((p, i) => {
               const reverse = i % 2 === 1;
               return (
-                <article
+                <Reveal
+                  as="article"
                   key={p.numeral}
+                  delay={i * REVEAL_STAGGER}
                   className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
                     reverse ? "md:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+                  <Parallax className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+                    {/* IMMAGINE PROVVISORIA — sostituire con foto reale */}
                     <img
                       src={p.image}
                       alt={p.alt}
                       loading="lazy"
                       className="h-full w-full object-cover"
                     />
-                    {/* placeholder marker */}
                     <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
-                      immagine segnaposto
+                      immagine provvisoria
                     </span>
-                  </div>
+                  </Parallax>
                   <div>
                     <span className="block font-display text-7xl leading-none text-[var(--oro)] md:text-8xl">
                       {p.numeral}
@@ -117,7 +126,7 @@ function IlCammino() {
                       {p.body}
                     </p>
                   </div>
-                </article>
+                </Reveal>
               );
             })}
           </div>
@@ -125,7 +134,7 @@ function IlCammino() {
       </section>
 
       {/* UN SOLO MOVIMENTO */}
-      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+      <Reveal as="section" className="bg-[var(--avorio)] pb-24 md:pb-32">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <div className="mx-auto mb-12 h-px w-16 bg-[var(--oro)]/60" />
           <p className="font-display text-2xl leading-snug text-foreground md:text-4xl">
@@ -138,7 +147,7 @@ function IlCammino() {
           </p>
           <div className="mx-auto mt-12 h-px w-16 bg-[var(--oro)]/60" />
         </div>
-      </section>
+      </Reveal>
 
       {/* DIVISORE SENSORIALE */}
       <SensoryDivider>
@@ -146,7 +155,7 @@ function IlCammino() {
       </SensoryDivider>
 
       {/* CTA FINALE */}
-      <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Vediamo da dove puoi iniziare il tuo{" "}
@@ -161,7 +170,7 @@ function IlCammino() {
             </Link>
           </div>
         </div>
-      </section>
+      </Reveal>
     </>
   );
 }
