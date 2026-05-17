@@ -1,0 +1,127 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { testimonianze } from "@/lib/testimonianze";
+import { abs } from "@/lib/site";
+
+export const Route = createFileRoute("/testimonianze")({
+  component: TestimonianzePage,
+  head: () => ({
+    meta: [
+      { title: "Testimonianze — Progetto Semi di Luce" },
+      {
+        name: "description",
+        content:
+          "Le parole di chi ha camminato accanto ad Andrea Detommaso nei percorsi di meditazione e Raja Yoga. Lettere raccolte negli anni, riportate come sono state scritte.",
+      },
+      { property: "og:title", content: "Testimonianze — Progetto Semi di Luce" },
+      {
+        property: "og:description",
+        content:
+          "Le parole di chi ha camminato. Lettere raccolte negli anni dai percorsi di meditazione e Raja Yoga.",
+      },
+      { property: "og:url", content: abs("/testimonianze") },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: abs("/testimonianze") }],
+  }),
+});
+
+function TestimonianzaItem({
+  cite,
+  estratto,
+  testo,
+}: {
+  cite: string;
+  estratto: string;
+  testo: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const paragrafi = testo.split("\n\n");
+  return (
+    <article className="py-12 md:py-16">
+      <blockquote>
+        <p className="font-display text-xl leading-relaxed text-foreground/85 md:text-2xl">
+          {estratto}
+        </p>
+        <Collapsible open={open} onOpenChange={setOpen}>
+          <CollapsibleContent>
+            <div className="mt-6 space-y-4">
+              {paragrafi.map((p, i) => (
+                <p
+                  key={i}
+                  className="text-base leading-relaxed text-foreground/75 md:text-lg"
+                >
+                  {p}
+                </p>
+              ))}
+            </div>
+          </CollapsibleContent>
+          <CollapsibleTrigger asChild>
+            <button
+              type="button"
+              className="mt-5 text-xs uppercase tracking-[0.25em] text-foreground/60 underline decoration-[var(--oro)]/60 decoration-1 underline-offset-[6px] transition-colors hover:text-[var(--oro)]"
+            >
+              {open ? "Chiudi" : "Leggi tutto"}
+            </button>
+          </CollapsibleTrigger>
+        </Collapsible>
+        <footer className="mt-6">
+          <cite className="font-display text-sm not-italic tracking-[0.15em] text-foreground/60">
+            — {cite}
+          </cite>
+        </footer>
+      </blockquote>
+    </article>
+  );
+}
+
+function TestimonianzePage() {
+  return (
+    <div className="bg-[var(--avorio)]">
+      {/* Hero */}
+      <section className="pt-32 pb-12 md:pt-40 md:pb-16">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+            Testimonianze
+          </p>
+          <h1 className="mt-6 font-display text-4xl leading-tight md:text-6xl">
+            Le parole di chi ha <span className="italic-oro">camminato</span>
+          </h1>
+          <p className="mt-8 font-display text-lg italic leading-relaxed text-foreground/80 md:text-xl">
+            Non recensioni. Lettere di chi ha fatto un tratto di strada. Le
+            riporto come sono state scritte.
+          </p>
+        </div>
+      </section>
+
+      {/* Riga di contesto */}
+      <div className="mx-auto max-w-3xl px-6">
+        <p className="text-center font-display text-sm italic text-foreground/50">
+          Testimonianze raccolte negli anni dai percorsi di meditazione e Raja
+          Yoga.
+        </p>
+      </div>
+
+      {/* Lista */}
+      <section className="py-12 md:py-20">
+        <div className="mx-auto max-w-2xl px-6">
+          <div className="divide-y divide-[var(--notte)]/10">
+            {testimonianze.map((t) => (
+              <TestimonianzaItem
+                key={t.id}
+                cite={t.cite}
+                estratto={t.estratto}
+                testo={t.testo}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
