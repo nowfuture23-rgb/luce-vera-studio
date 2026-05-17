@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SensoryDivider } from "@/components/sensory-divider";
 import { getScritto, scritti } from "@/lib/scritti";
+import { abs } from "@/lib/site";
 
 export const Route = createFileRoute("/scritti/$slug")({
   component: ScrittoArticolo,
@@ -36,7 +37,7 @@ export const Route = createFileRoute("/scritti/$slug")({
       ? `${scritto.titolo} — Progetto Semi di Luce`
       : "Scritto — Progetto Semi di Luce";
     const description = scritto?.estratto ?? "Scritti di Andrea Detommaso.";
-    const url = `/scritti/${params.slug}`;
+    const url = abs(`/scritti/${params.slug}`);
     return {
       meta: [
         { title },
