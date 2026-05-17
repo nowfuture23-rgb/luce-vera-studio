@@ -135,7 +135,7 @@ function ChiSono() {
       </Reveal>
 
       {/* CTA FINALE — notte arricchita da SFONDO ATMOSFERA scuro */}
-      <Reveal as="section" className="notte-aura relative overflow-hidden bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="notte-aura relative overflow-hidden bg-[var(--notte)] py-16 text-[var(--avorio)] md:py-20">
         {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
         <img
           src={atmosCtaNotte}

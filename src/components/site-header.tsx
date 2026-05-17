@@ -34,7 +34,7 @@ export function SiteHeader() {
       className={`sticky top-0 left-0 right-0 z-50 transition-colors duration-[250ms] ${
         scrolled
           ? "bg-[var(--notte)]/85 supports-[backdrop-filter]:backdrop-blur-md"
-          : "bg-transparent"
+          : "bg-gradient-to-b from-[var(--notte)]/90 via-[var(--notte)]/60 to-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10 md:py-8">
