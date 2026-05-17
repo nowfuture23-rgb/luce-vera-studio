@@ -311,8 +311,10 @@ body::before {
   transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
-.media-frame:hover > img,
-.group:hover .media-frame > img {
+/* Zoom solo per immagini in card cliccabili (opt-in tramite .media-frame-hover
+ * o tramite parent .group con classe .group-hover-zoom sul frame). */
+.media-frame.media-frame-hover:hover > img,
+.group:hover .media-frame.group-hover-zoom > img {
   transform: scale(1.03);
 }
 /* I badge "immagine provvisoria" devono restare sopra l'overlay. */
