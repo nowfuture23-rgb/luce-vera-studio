@@ -17,6 +17,10 @@ import imgLao from "@/assets/esperienza-lao.jpg";
 import imgBosco from "@/assets/esperienza-bosco.jpg";
 import imgMedjugorje from "@/assets/esperienza-medjugorje.jpg";
 import imgAssisi from "@/assets/esperienza-assisi.jpg";
+import { AtmosphereHero } from "@/components/atmosphere-hero";
+// SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
+import atmosEsperienze from "@/assets/atmos-esperienze.jpg";
+import atmosCtaNotte from "@/assets/atmos-cta-notte.jpg";
 
 export const Route = createFileRoute("/esperienze")({
   component: Esperienze,
@@ -140,22 +144,29 @@ function Esperienze() {
 
   return (
     <>
-      {/* HERO */}
-      <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
+      {/* HERO con SFONDO ATMOSFERA */}
+      <AtmosphereHero
+        image={atmosEsperienze}
+        alt="Atmosfera di sentiero nel bosco in controluce dorato"
+        tone="scuro"
+        eager
+        minH="min-h-[60svh]"
+        className="pt-32 pb-20 md:pt-40 md:pb-28"
+      >
         <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Esperienze
           </p>
-          <h1 className="mt-6 font-display text-5xl leading-[1.05] md:text-7xl">
+          <h1 className="mt-6 font-display text-5xl leading-[1.05] text-[var(--avorio)] md:text-7xl">
             Dove il cammino si fa{" "}
             <span className="italic-oro">esperienza</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl font-display text-xl italic leading-relaxed text-foreground/75 md:text-2xl">
+          <p className="mx-auto mt-8 max-w-2xl font-display text-xl italic leading-relaxed text-[var(--avorio)]/85 md:text-2xl">
             Corsi, ritiri e cammini. Filtra per via o scorri il calendario:
             ogni esperienza è una porta dentro la stessa Via.
           </p>
         </div>
-      </Reveal>
+      </AtmosphereHero>
 
       {/* FILTRO */}
       <section className="bg-[var(--avorio)] pb-10">
@@ -301,9 +312,21 @@ function Esperienze() {
         </div>
       </Reveal>
 
-      {/* CTA FINALE */}
-      <Reveal as="section" className="notte-aura bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      {/* CTA FINALE — notte arricchita da SFONDO ATMOSFERA scuro */}
+      <Reveal as="section" className="notte-aura relative overflow-hidden bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+        {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
+        <img
+          src={atmosCtaNotte}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          width={1920}
+          height={1080}
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[var(--notte)]/75" />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Non trovi quello che cerchi?{" "}
             <span className="italic-oro">Scrivimi</span>
