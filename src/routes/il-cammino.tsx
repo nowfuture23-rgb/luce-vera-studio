@@ -7,6 +7,10 @@ import { abs } from "@/lib/site";
 import { Reveal, Parallax } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
 import { SealMark } from "@/components/seal-mark";
+import { AtmosphereHero } from "@/components/atmosphere-hero";
+// SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
+import atmosCammino from "@/assets/atmos-cammino.jpg";
+import atmosCtaNotte from "@/assets/atmos-cta-notte.jpg";
 
 export const Route = createFileRoute("/il-cammino")({
   component: IlCammino,
@@ -73,21 +77,28 @@ const pilastri: Pilastro[] = [
 function IlCammino() {
   return (
     <>
-      {/* HERO testuale */}
-      <Reveal as="section" className="bg-[var(--avorio)] pt-40 pb-24 md:pt-48 md:pb-32">
+      {/* HERO testuale con SFONDO ATMOSFERA */}
+      <AtmosphereHero
+        image={atmosCammino}
+        alt="Atmosfera di sentiero in pietra tra la nebbia all'alba"
+        tone="scuro"
+        eager
+        minH="min-h-[60svh]"
+        className="pt-40 pb-24 md:pt-48 md:pb-32"
+      >
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Il Cammino
           </p>
-          <h1 className="mt-8 font-display text-4xl leading-[1.1] text-foreground md:text-6xl">
+          <h1 className="mt-8 font-display text-4xl leading-[1.1] text-[var(--avorio)] md:text-6xl">
             Una sola <span className="italic-oro">Via</span>, in tre movimenti
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-foreground/75 md:text-xl">
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-[var(--avorio)]/85 md:text-xl">
             Meditazione, Natura e luoghi di Luce non sono cose diverse. Sono lo
             stesso cammino, visto da tre finestre.
           </p>
         </div>
-      </Reveal>
+      </AtmosphereHero>
 
       {/* I TRE PILASTRI */}
       <section className="bg-[var(--avorio)] pb-24 md:pb-32">
@@ -159,9 +170,21 @@ function IlCammino() {
         Tutto ciò che è qui, è stato prima attraversato.
       </SensoryDivider>
 
-      {/* CTA FINALE */}
-      <Reveal as="section" className="notte-aura bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      {/* CTA FINALE — notte arricchita da SFONDO ATMOSFERA scuro */}
+      <Reveal as="section" className="notte-aura relative overflow-hidden bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+        {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
+        <img
+          src={atmosCtaNotte}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          width={1920}
+          height={1080}
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[var(--notte)]/75" />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Vediamo da dove puoi iniziare il tuo{" "}
             <span className="italic-oro">cammino</span>
