@@ -219,9 +219,9 @@ function Index() {
               },
             ].map((p, i) => (
               <Reveal as="li" key={p.n} delay={i * REVEAL_STAGGER} className="flex gap-8 md:gap-12">
-                <Reveal as="span" delay={i * REVEAL_STAGGER} className="shrink-0 font-display text-4xl italic text-[var(--oro)] md:text-5xl">
+                <span className="shrink-0 font-display text-4xl italic text-[var(--oro)] md:text-5xl">
                   {p.n}
-                </Reveal>
+                </span>
                 <div>
                   <h3 className="font-display text-2xl leading-snug md:text-3xl">
                     {p.t}
