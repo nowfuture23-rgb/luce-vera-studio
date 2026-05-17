@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { scritti } from "@/lib/scritti";
+import { abs } from "@/lib/site";
 
 export const Route = createFileRoute("/scritti")({
   component: ScrittiIndex,
@@ -17,10 +18,10 @@ export const Route = createFileRoute("/scritti")({
         content:
           "Appunti, preparazioni e significati lungo il cammino. Gli scritti di Andrea Detommaso.",
       },
-      { property: "og:url", content: "/scritti" },
+      { property: "og:url", content: abs("/scritti") },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/scritti" }],
+    links: [{ rel: "canonical", href: abs("/scritti") }],
   }),
 });
 
