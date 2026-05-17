@@ -3,6 +3,7 @@ import porta1 from "@/assets/porta-pratica.jpg";
 import porta2 from "@/assets/porta-natura.jpg";
 import porta3 from "@/assets/porta-vie.jpg";
 import { SensoryDivider } from "@/components/sensory-divider";
+import { abs } from "@/lib/site";
 
 export const Route = createFileRoute("/il-cammino")({
   component: IlCammino,
@@ -20,9 +21,9 @@ export const Route = createFileRoute("/il-cammino")({
         content:
           "Meditazione, Natura e luoghi di Luce: lo stesso cammino visto da tre finestre.",
       },
-      { property: "og:url", content: "/il-cammino" },
+      { property: "og:url", content: abs("/il-cammino") },
     ],
-    links: [{ rel: "canonical", href: "/il-cammino" }],
+    links: [{ rel: "canonical", href: abs("/il-cammino") }],
   }),
 });
 
@@ -39,7 +40,7 @@ const pilastri: Pilastro[] = [
     numeral: "I",
     title: "La Pratica",
     image: porta1,
-    alt: "La pratica interiore",
+    alt: "Persona in meditazione seduta, luce naturale",
     body:
       "Meditazione e Raja Yoga. È la base: il lavoro interiore quotidiano, le fondamenta. I tre corsi, il Raja Yoga avanzato, la pratica che resta con te ogni giorno. Senza questa base, tutto il resto è solo turismo.",
   },
@@ -47,7 +48,7 @@ const pilastri: Pilastro[] = [
     numeral: "II",
     title: "La Natura",
     image: porta2,
-    alt: "Natura Alchemica Experience",
+    alt: "Sentiero nel bosco lungo il Fiume Lao",
     body:
       "Natura Alchemica Experience. Il Libro della Natura vissuto, non spiegato: immersioni, cammini, il Fiume Lao, i concerti nel bosco. La pratica esce dalla stanza ed entra nel mondo vivente.",
   },
@@ -55,7 +56,7 @@ const pilastri: Pilastro[] = [
     numeral: "III",
     title: "Le Vie di Luce",
     image: porta3,
-    alt: "Viaggi dell'Anima nei luoghi di Luce",
+    alt: "Cammino di pellegrinaggio verso un luogo sacro",
     body:
       "I Viaggi dell'Anima. I luoghi che accelerano il cammino — Monte Sant'Angelo, Assisi e La Verna, Medjugorje — letti come portali, non come pellegrinaggi turistici.",
   },
