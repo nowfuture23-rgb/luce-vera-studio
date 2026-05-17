@@ -124,6 +124,7 @@ function Index() {
                 titolo: "La Pratica",
                 img: porta1,
                 alt: "Persona in meditazione seduta, luce naturale",
+                placeholder: true,
                 testo:
                   "Meditazione e Raja Yoga. Il lavoro quotidiano che cambia, da dentro, il modo in cui vivi tutto il resto.",
               },
@@ -132,6 +133,7 @@ function Index() {
                 titolo: "La Natura",
                 img: porta2,
                 alt: "Sentiero nel bosco lungo il Fiume Lao",
+                placeholder: true,
                 testo:
                   "Il Libro della Natura vissuto: immersioni, cammini, il suono delle piante. Dove la pratica diventa esperienza.",
               },
@@ -140,6 +142,7 @@ function Index() {
                 titolo: "Le Vie di Luce",
                 img: porta3,
                 alt: "Cammino di pellegrinaggio verso un luogo sacro",
+                placeholder: true,
                 testo:
                   "I viaggi dell'anima nei luoghi sacri. Là dove il cammino accelera e il cuore ricorda la strada.",
               },
@@ -150,6 +153,7 @@ function Index() {
                 className="porta-card group block"
               >
                 <div className="relative aspect-[3/4] overflow-hidden bg-[var(--notte)]">
+                  {/* IMMAGINE PROVVISORIA — sostituire con foto reale */}
                   <img
                     src={p.img}
                     alt={p.alt}
@@ -161,6 +165,9 @@ function Index() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--notte)]/80 via-transparent to-transparent" />
                   <span className="absolute top-6 left-6 font-display text-3xl italic text-[var(--oro)] md:text-4xl">
                     {p.roman}
+                  </span>
+                  <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
+                    immagine provvisoria
                   </span>
                 </div>
                 <h3 className="mt-6 font-display text-3xl italic text-foreground transition-colors group-hover:text-[var(--oro)] md:text-4xl">
