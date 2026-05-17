@@ -3,6 +3,7 @@ import { scritti } from "@/lib/scritti";
 import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
+import { SealMark } from "@/components/seal-mark";
 
 export const Route = createFileRoute("/scritti")({
   component: ScrittiIndex,
@@ -54,8 +55,12 @@ function ScrittiIndex() {
       </div>
 
       {/* Lista editoriale */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="relative overflow-hidden py-16 md:py-24">
+        <SealMark
+          tone="oro"
+          className="pointer-events-none absolute -left-40 top-1/3 z-0 h-[520px] w-[520px] opacity-[0.07] md:h-[680px] md:w-[680px]"
+        />
+        <div className="relative z-10 mx-auto max-w-3xl px-6">
           <ul className="divide-y divide-[var(--notte)]/15">
             {scritti.map((s, i) => (
               <Reveal as="li" key={s.slug} delay={Math.min(i, 7) * REVEAL_STAGGER}>

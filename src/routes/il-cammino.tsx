@@ -138,7 +138,7 @@ function IlCammino() {
       <Reveal as="section" className="relative overflow-hidden bg-[var(--avorio)] pb-24 md:pb-32">
         <SealMark
           tone="oro"
-          className="pointer-events-none absolute -right-32 -top-20 z-0 h-[480px] w-[480px] opacity-[0.05] md:h-[640px] md:w-[640px]"
+          className="pointer-events-none absolute -right-32 -top-20 z-0 h-[480px] w-[480px] opacity-[0.08] md:h-[640px] md:w-[640px]"
         />
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <div className="mx-auto mb-12 h-px w-16 bg-[var(--oro)]/60" />

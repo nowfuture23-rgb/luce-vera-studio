@@ -5,6 +5,7 @@ import { MarqueeLuoghi } from "@/components/marquee-luoghi";
 import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
+import { SealMark } from "@/components/seal-mark";
 
 export const Route = createFileRoute("/chi-sono")({
   component: ChiSono,
@@ -86,8 +87,12 @@ function ChiSono() {
       </Reveal>
 
       {/* LE TRE TAPPE */}
-      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="relative overflow-hidden bg-[var(--avorio)] pb-24 md:pb-32">
+        <SealMark
+          tone="oro"
+          className="pointer-events-none absolute -right-44 top-24 z-0 h-[520px] w-[520px] opacity-[0.06] md:h-[700px] md:w-[700px]"
+        />
+        <div className="relative z-10 mx-auto max-w-3xl px-6">
           <div className="flex flex-col gap-20 md:gap-28">
             {tappe.map((t, i) => (
               <Reveal as="article" key={t.title} delay={i * REVEAL_STAGGER}>

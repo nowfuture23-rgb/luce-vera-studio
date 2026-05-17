@@ -6,7 +6,7 @@ export function SensoryDivider({ children }: { children: React.ReactNode }) {
       {/* Filigrana brand: astratta, in bleed, sotto il contenuto. */}
       <SealMark
         tone="oro"
-        className="pointer-events-none absolute -right-24 -top-24 z-0 h-[420px] w-[420px] opacity-[0.05] md:-right-32 md:h-[560px] md:w-[560px]"
+        className="pointer-events-none absolute -right-24 -top-24 z-0 h-[420px] w-[420px] opacity-[0.08] md:-right-32 md:h-[560px] md:w-[560px]"
       />
       <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
         <div className="mx-auto mb-10 h-px w-16 bg-[var(--oro)]/60" />
