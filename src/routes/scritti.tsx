@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { scritti } from "@/lib/scritti";
 import { abs } from "@/lib/site";
+import { Reveal } from "@/components/reveal";
+import { REVEAL_STAGGER } from "@/lib/motion";
 
 export const Route = createFileRoute("/scritti")({
   component: ScrittiIndex,
@@ -29,7 +31,7 @@ function ScrittiIndex() {
   return (
     <div className="bg-[var(--avorio)]">
       {/* Hero */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20">
+      <Reveal as="section" className="pt-32 pb-16 md:pt-40 md:pb-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Scritti
@@ -42,7 +44,7 @@ function ScrittiIndex() {
             un'esperienza e l'altra, per chi cammina.
           </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* Riga di stato */}
       <div className="mx-auto max-w-3xl px-6">
@@ -55,8 +57,8 @@ function ScrittiIndex() {
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <ul className="divide-y divide-[var(--notte)]/15">
-            {scritti.map((s) => (
-              <li key={s.slug}>
+            {scritti.map((s, i) => (
+              <Reveal as="li" key={s.slug} delay={Math.min(i, 7) * REVEAL_STAGGER}>
                 <Link
                   to="/scritti/$slug"
                   params={{ slug: s.slug }}
@@ -78,7 +80,7 @@ function ScrittiIndex() {
                     Leggi
                   </p>
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
