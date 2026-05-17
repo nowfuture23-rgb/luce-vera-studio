@@ -13,6 +13,9 @@ import {
 } from "@/components/ui/select";
 import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
+import { AtmosphereHero } from "@/components/atmosphere-hero";
+// SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
+import atmosContatti from "@/assets/atmos-contatti.jpg";
 
 export const Route = createFileRoute("/contatti")({
   component: ContattiPage,
@@ -83,21 +86,28 @@ function ContattiPage() {
 
   return (
     <>
-      {/* HERO */}
-      <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-16 md:pt-40 md:pb-20">
+      {/* HERO con SFONDO ATMOSFERA */}
+      <AtmosphereHero
+        image={atmosContatti}
+        alt="Atmosfera di soglia con luce calda che entra da una porta socchiusa"
+        tone="scuro"
+        eager
+        minH="min-h-[55svh]"
+        className="pt-32 pb-16 md:pt-40 md:pb-20"
+      >
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Contatti
           </p>
-          <h1 className="mt-8 font-display text-4xl leading-[1.1] text-foreground md:text-5xl lg:text-6xl">
+          <h1 className="mt-8 font-display text-4xl leading-[1.1] text-[var(--avorio)] md:text-5xl lg:text-6xl">
             Scrivimi: vediamo da dove{" "}
             <span className="italic-oro">iniziare</span>
           </h1>
-          <p className="mt-8 font-display text-xl italic leading-relaxed text-foreground/70 md:text-2xl">
+          <p className="mt-8 font-display text-xl italic leading-relaxed text-[var(--avorio)]/85 md:text-2xl">
             Ogni cammino parte da una conversazione. Raccontami dove sei: ti rispondo io, personalmente.
           </p>
         </div>
-      </Reveal>
+      </AtmosphereHero>
 
       {/* FORM */}
       <Reveal as="section" className="bg-[var(--avorio)] pb-24 md:pb-32">
