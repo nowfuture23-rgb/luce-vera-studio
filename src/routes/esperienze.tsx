@@ -9,6 +9,14 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { abs } from "@/lib/site";
+import { Reveal } from "@/components/reveal";
+import { REVEAL_STAGGER } from "@/lib/motion";
+import imgMeditazione from "@/assets/esperienza-meditazione.jpg";
+import imgRaja from "@/assets/esperienza-raja.jpg";
+import imgLao from "@/assets/esperienza-lao.jpg";
+import imgBosco from "@/assets/esperienza-bosco.jpg";
+import imgMedjugorje from "@/assets/esperienza-medjugorje.jpg";
+import imgAssisi from "@/assets/esperienza-assisi.jpg";
 
 export const Route = createFileRoute("/esperienze")({
   component: Esperienze,
@@ -39,6 +47,10 @@ type Esperienza = {
   via: Via;
   titolo: string;
   senso: string;
+  image: string;
+  alt: string;
+  /** IMMAGINE PROVVISORIA generata da AI — sostituire con foto reale */
+  placeholder: true;
 };
 
 const esperienze: Esperienza[] = [
@@ -46,31 +58,49 @@ const esperienze: Esperienza[] = [
     via: "La Pratica",
     titolo: "Corso di Meditazione — Fondamenti",
     senso: "I primi passi dentro il silenzio, con metodo e gentilezza.",
+    image: imgMeditazione,
+    alt: "Cuscino di meditazione in luce naturale del mattino",
+    placeholder: true,
   },
   {
     via: "La Pratica",
     titolo: "Raja Yoga Avanzato",
     senso: "Approfondire la pratica per chi cammina già da tempo.",
+    image: imgRaja,
+    alt: "Libro aperto e candela in luce calda",
+    placeholder: true,
   },
   {
     via: "La Natura",
     titolo: "Immersione al Fiume Lao",
     senso: "Acqua, bosco e respiro: la Natura come maestra diretta.",
+    image: imgLao,
+    alt: "Fiume che scorre in un bosco al mattino",
+    placeholder: true,
   },
   {
     via: "La Natura",
     titolo: "Concerto nel Bosco",
     senso: "Suono, silenzio e alberi: una sera per ascoltare davvero.",
+    image: imgBosco,
+    alt: "Lanterne sospese tra gli alberi al crepuscolo",
+    placeholder: true,
   },
   {
     via: "Le Vie di Luce",
     titolo: "Ritiro a Medjugorje",
     senso: "Un tempo raccolto in uno dei luoghi più viventi della Terra.",
+    image: imgMedjugorje,
+    alt: "Colline all'alba con foschia e luce calda",
+    placeholder: true,
   },
   {
     via: "Le Vie di Luce",
     titolo: "Cammino di Assisi e La Verna",
     senso: "Passi, preghiera e pietra: l'Italia mistica a piedi.",
+    image: imgAssisi,
+    alt: "Sentiero in pietra tra cipressi al tramonto",
+    placeholder: true,
   },
 ];
 
@@ -111,7 +141,7 @@ function Esperienze() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
+      <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Esperienze
@@ -125,7 +155,7 @@ function Esperienze() {
             ogni esperienza è una porta dentro la stessa Via.
           </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* FILTRO */}
       <section className="bg-[var(--avorio)] pb-10">
@@ -162,19 +192,22 @@ function Esperienze() {
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {visibili.map((e, i) => (
+              <Reveal key={`${e.titolo}-${i}`} delay={Math.min(i, 7) * REVEAL_STAGGER}>
               <Card
-                key={`${e.titolo}-${i}`}
-                className="flex flex-col overflow-hidden rounded-none border border-[var(--notte)]/10 bg-[var(--avorio)] shadow-none"
+                className="flex h-full flex-col overflow-hidden rounded-none border border-[var(--notte)]/10 bg-[var(--avorio)] shadow-none"
               >
-                {/* immagine segnaposto */}
+                {/* IMMAGINE PROVVISORIA — generata da AI, sostituire con foto reale */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--notte)]/10">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display text-base italic text-foreground/45">
-                      immagine da definire
-                    </span>
-                  </div>
+                  <img
+                    src={e.image}
+                    alt={e.alt}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover"
+                  />
                   <span className="absolute left-3 top-3 bg-[var(--avorio)]/90 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-[var(--notte)]/70">
-                    placeholder
+                    immagine provvisoria
                   </span>
                 </div>
 
@@ -204,13 +237,14 @@ function Esperienze() {
                   </Button>
                 </CardContent>
               </Card>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-[var(--avorio)] py-24 md:py-32">
+      <Reveal as="section" className="bg-[var(--avorio)] py-24 md:py-32">
         <div className="mx-auto max-w-3xl px-6 md:px-10">
           <div className="text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
@@ -238,10 +272,10 @@ function Esperienze() {
             ))}
           </Accordion>
         </div>
-      </section>
+      </Reveal>
 
       {/* PRENOTAZIONI — predisposizione */}
-      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+      <Reveal as="section" className="bg-[var(--avorio)] pb-24 md:pb-32">
         <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Prenotazioni
@@ -265,10 +299,10 @@ function Esperienze() {
             </Link>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* CTA FINALE */}
-      <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Non trovi quello che cerchi?{" "}
@@ -283,7 +317,7 @@ function Esperienze() {
             </Link>
           </div>
         </div>
-      </section>
+      </Reveal>
     </>
   );
 }
