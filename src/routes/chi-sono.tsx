@@ -57,7 +57,7 @@ function ChiSono() {
       {/* HERO con ritratto */}
       <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+          <div className="media-frame relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
             {/* IMMAGINE PROVVISORIA — placeholder ritratto, da sostituire con foto reale di Andrea */}
             <img
               src={ritratto}
@@ -66,7 +66,7 @@ function ChiSono() {
               height={1120}
               className="h-full w-full object-cover"
             />
-            <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
+            <span className="media-badge absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
               immagine provvisoria
             </span>
           </div>
@@ -119,7 +119,7 @@ function ChiSono() {
       </Reveal>
 
       {/* CTA FINALE */}
-      <Reveal as="section" className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="notte-aura bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Se è questo che cerchi, siamo nel posto{" "}
