@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TestimonianzeRouteImport } from './routes/testimonianze'
 import { Route as ScrittiRouteImport } from './routes/scritti'
 import { Route as IlCamminoRouteImport } from './routes/il-cammino'
 import { Route as EsperienzeRouteImport } from './routes/esperienze'
@@ -17,6 +18,11 @@ import { Route as ChiSonoRouteImport } from './routes/chi-sono'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ScrittiSlugRouteImport } from './routes/scritti.$slug'
 
+const TestimonianzeRoute = TestimonianzeRouteImport.update({
+  id: '/testimonianze',
+  path: '/testimonianze',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScrittiRoute = ScrittiRouteImport.update({
   id: '/scritti',
   path: '/scritti',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/esperienze': typeof EsperienzeRoute
   '/il-cammino': typeof IlCamminoRoute
   '/scritti': typeof ScrittiRouteWithChildren
+  '/testimonianze': typeof TestimonianzeRoute
   '/scritti/$slug': typeof ScrittiSlugRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/esperienze': typeof EsperienzeRoute
   '/il-cammino': typeof IlCamminoRoute
   '/scritti': typeof ScrittiRouteWithChildren
+  '/testimonianze': typeof TestimonianzeRoute
   '/scritti/$slug': typeof ScrittiSlugRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/esperienze': typeof EsperienzeRoute
   '/il-cammino': typeof IlCamminoRoute
   '/scritti': typeof ScrittiRouteWithChildren
+  '/testimonianze': typeof TestimonianzeRoute
   '/scritti/$slug': typeof ScrittiSlugRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/esperienze'
     | '/il-cammino'
     | '/scritti'
+    | '/testimonianze'
     | '/scritti/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/esperienze'
     | '/il-cammino'
     | '/scritti'
+    | '/testimonianze'
     | '/scritti/$slug'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/esperienze'
     | '/il-cammino'
     | '/scritti'
+    | '/testimonianze'
     | '/scritti/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -118,10 +130,18 @@ export interface RootRouteChildren {
   EsperienzeRoute: typeof EsperienzeRoute
   IlCamminoRoute: typeof IlCamminoRoute
   ScrittiRoute: typeof ScrittiRouteWithChildren
+  TestimonianzeRoute: typeof TestimonianzeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/testimonianze': {
+      id: '/testimonianze'
+      path: '/testimonianze'
+      fullPath: '/testimonianze'
+      preLoaderRoute: typeof TestimonianzeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scritti': {
       id: '/scritti'
       path: '/scritti'
@@ -192,6 +212,7 @@ const rootRouteChildren: RootRouteChildren = {
   EsperienzeRoute: EsperienzeRoute,
   IlCamminoRoute: IlCamminoRoute,
   ScrittiRoute: ScrittiRouteWithChildren,
+  TestimonianzeRoute: TestimonianzeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

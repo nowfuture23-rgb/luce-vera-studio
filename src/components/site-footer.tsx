@@ -18,6 +18,7 @@ export function SiteFooter() {
             <Link to="/chi-sono" className="hover:text-[var(--oro)]">Chi sono</Link>
             <Link to="/esperienze" className="hover:text-[var(--oro)]">Esperienze</Link>
             <Link to="/scritti" className="hover:text-[var(--oro)]">Scritti</Link>
+            <Link to="/testimonianze" className="hover:text-[var(--oro)]">Testimonianze</Link>
             <Link to="/contatti" className="hover:text-[var(--oro)]">Contatti</Link>
           </nav>
         </div>

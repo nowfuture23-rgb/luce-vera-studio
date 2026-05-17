@@ -6,6 +6,7 @@ const navItems = [
   { to: "/chi-sono", label: "Chi sono" },
   { to: "/esperienze", label: "Esperienze" },
   { to: "/scritti", label: "Scritti" },
+  { to: "/testimonianze", label: "Testimonianze" },
   { to: "/contatti", label: "Contatti" },
 ] as const;
 
