@@ -1,13 +1,197 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/esperienze")({
-  component: () => (
-    <div className="bg-[var(--avorio)] pt-40 pb-32">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <h1 className="font-display text-4xl md:text-5xl capitalize">esperienze</h1>
-        <p className="mt-6 text-foreground/70">In arrivo.</p>
-      </div>
-    </div>
-  ),
-  head: () => ({ meta: [{ title: "Esperienze — Progetto Semi di Luce" }] }),
+  component: Esperienze,
+  head: () => ({
+    meta: [
+      { title: "Esperienze — Progetto Semi di Luce" },
+      {
+        name: "description",
+        content:
+          "Corsi, ritiri e cammini lungo le tre vie del Progetto Semi di Luce: la Pratica, la Natura, le Vie di Luce. Filtra per via ed esplora il calendario.",
+      },
+      { property: "og:title", content: "Esperienze — Progetto Semi di Luce" },
+      {
+        property: "og:description",
+        content:
+          "Corsi, ritiri e cammini lungo le tre vie del Progetto Semi di Luce. Filtra per via ed esplora il calendario.",
+      },
+      { property: "og:url", content: "/esperienze" },
+    ],
+    links: [{ rel: "canonical", href: "/esperienze" }],
+  }),
 });
+
+type Via = "La Pratica" | "La Natura" | "Le Vie di Luce";
+type Filtro = "Tutte" | Via;
+
+type Esperienza = {
+  via: Via;
+  titolo: string;
+  senso: string;
+};
+
+const esperienze: Esperienza[] = [
+  {
+    via: "La Pratica",
+    titolo: "Corso di Meditazione — Fondamenti",
+    senso: "I primi passi dentro il silenzio, con metodo e gentilezza.",
+  },
+  {
+    via: "La Pratica",
+    titolo: "Raja Yoga Avanzato",
+    senso: "Approfondire la pratica per chi cammina già da tempo.",
+  },
+  {
+    via: "La Natura",
+    titolo: "Immersione al Fiume Lao",
+    senso: "Acqua, bosco e respiro: la Natura come maestra diretta.",
+  },
+  {
+    via: "La Natura",
+    titolo: "Concerto nel Bosco",
+    senso: "Suono, silenzio e alberi: una sera per ascoltare davvero.",
+  },
+  {
+    via: "Le Vie di Luce",
+    titolo: "Ritiro a Medjugorje",
+    senso: "Un tempo raccolto in uno dei luoghi più viventi della Terra.",
+  },
+  {
+    via: "Le Vie di Luce",
+    titolo: "Cammino di Assisi e La Verna",
+    senso: "Passi, preghiera e pietra: l'Italia mistica a piedi.",
+  },
+];
+
+const filtri: Filtro[] = ["Tutte", "La Pratica", "La Natura", "Le Vie di Luce"];
+
+function Esperienze() {
+  const [attivo, setAttivo] = useState<Filtro>("Tutte");
+  const visibili =
+    attivo === "Tutte" ? esperienze : esperienze.filter((e) => e.via === attivo);
+
+  return (
+    <>
+      {/* HERO */}
+      <section className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+            Esperienze
+          </p>
+          <h1 className="mt-6 font-display text-5xl leading-[1.05] md:text-7xl">
+            Dove il cammino si fa{" "}
+            <span className="italic-oro">esperienza</span>
+          </h1>
+          <p className="mx-auto mt-8 max-w-2xl font-display text-xl italic leading-relaxed text-foreground/75 md:text-2xl">
+            Corsi, ritiri e cammini. Filtra per via o scorri il calendario:
+            ogni esperienza è una porta dentro la stessa Via.
+          </p>
+        </div>
+      </section>
+
+      {/* FILTRO */}
+      <section className="bg-[var(--avorio)] pb-10">
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {filtri.map((f) => {
+              const active = f === attivo;
+              return (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => setAttivo(f)}
+                  aria-pressed={active}
+                  className={
+                    "rounded-full border px-5 py-2 text-sm tracking-wide transition-colors " +
+                    (active
+                      ? "border-[var(--oro)] bg-[var(--oro)] text-[var(--notte)]"
+                      : "border-[var(--notte)]/25 bg-transparent text-foreground/75 hover:border-[var(--oro)] hover:text-[var(--oro)]")
+                  }
+                >
+                  {f}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-8 text-center font-display text-base italic text-foreground/55">
+            Schede di esempio — contenuti reali in arrivo.
+          </p>
+        </div>
+      </section>
+
+      {/* GRIGLIA */}
+      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {visibili.map((e, i) => (
+              <Card
+                key={`${e.titolo}-${i}`}
+                className="flex flex-col overflow-hidden rounded-none border border-[var(--notte)]/10 bg-[var(--avorio)] shadow-none"
+              >
+                {/* immagine segnaposto */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--notte)]/10">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-display text-base italic text-foreground/45">
+                      immagine da definire
+                    </span>
+                  </div>
+                  <span className="absolute left-3 top-3 bg-[var(--avorio)]/90 px-2 py-1 text-[10px] uppercase tracking-[0.25em] text-[var(--notte)]/70">
+                    placeholder
+                  </span>
+                </div>
+
+                <CardContent className="flex flex-1 flex-col p-6">
+                  <p className="text-[11px] uppercase tracking-[0.28em] text-[var(--oro)]">
+                    {e.via}
+                  </p>
+                  <h2 className="mt-3 font-display text-2xl leading-snug md:text-[1.65rem]">
+                    {e.titolo}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/70">
+                    {e.senso}
+                  </p>
+                  <p className="mt-5 text-xs uppercase tracking-[0.22em] text-foreground/55">
+                    Luogo da definire · durata da definire · data da definire
+                  </p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.22em] text-foreground/55">
+                    Prezzo: da definire
+                  </p>
+                  <div className="mt-6 flex-1" />
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-fit rounded-none border-[var(--notte)]/30 bg-transparent text-[var(--notte)] hover:bg-[var(--notte)] hover:text-[var(--avorio)]"
+                  >
+                    <Link to="/contatti">Scopri</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINALE */}
+      <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <h2 className="font-display text-3xl leading-tight md:text-5xl">
+            Non trovi quello che cerchi?{" "}
+            <span className="italic-oro">Scrivimi</span>
+          </h2>
+          <div className="mt-10">
+            <Link
+              to="/contatti"
+              className="inline-flex items-center justify-center border border-[var(--oro)] bg-[var(--oro)] px-10 py-4 text-sm uppercase tracking-[0.25em] text-[var(--notte)] transition-colors hover:bg-transparent hover:text-[var(--oro)]"
+            >
+              Scrivimi
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
