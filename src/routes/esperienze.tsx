@@ -2,6 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/esperienze")({
   component: Esperienze,
@@ -68,6 +74,33 @@ const esperienze: Esperienza[] = [
 ];
 
 const filtri: Filtro[] = ["Tutte", "La Pratica", "La Natura", "Le Vie di Luce"];
+
+const faq: { q: string; a: string }[] = [
+  {
+    q: "Come funziona l'iscrizione a un corso o a un ritiro?",
+    a: "Si parte sempre da un contatto diretto. Mi scrivi, capiamo insieme se l'esperienza è giusta per te in questo momento, e da lì organizziamo l'iscrizione. Non c'è un carrello anonimo: ogni percorso inizia da una conversazione.",
+  },
+  {
+    q: "Serve esperienza precedente per partecipare?",
+    a: "Dipende dall'esperienza. I corsi di fondamenti sono pensati per chi parte da zero; alcuni percorsi avanzati richiedono una pratica già avviata. Se non sei sicuro, chiedimelo: ti dico con onestà se è il momento giusto.",
+  },
+  {
+    q: "I ritiri e i cammini sono adatti a tutti?",
+    a: "Sono esperienze aperte ma non leggere: chiedono presenza e disponibilità interiore. Non serve essere atleti né esperti di spiritualità. Serve la volontà sincera di esserci davvero. Per ogni ritiro ti spiego prima cosa aspettarti.",
+  },
+  {
+    q: "Quanto costano le esperienze?",
+    a: "Ogni esperienza ha un suo contributo, che ti comunico in fase di contatto insieme a tutti i dettagli pratici. Il prezzo dipende da durata, luogo e tipo di percorso.",
+  },
+  {
+    q: "Dove si svolgono?",
+    a: "Dipende dall'esperienza: alcuni corsi sono ricorrenti, i cammini e i ritiri si tengono nei luoghi che fanno parte del percorso — dal Fiume Lao ai luoghi di Luce come Assisi, La Verna, Medjugorje. Il luogo preciso è sempre indicato per ogni data.",
+  },
+  {
+    q: "Posso proporti un'esperienza per un gruppo già formato?",
+    a: "Sì. Se hai un gruppo — un'associazione, un cerchio, una realtà già esistente — possiamo costruire un'esperienza dedicata. Scrivimi e ne parliamo.",
+  },
+];
 
 function Esperienze() {
   const [attivo, setAttivo] = useState<Filtro>("Tutte");
