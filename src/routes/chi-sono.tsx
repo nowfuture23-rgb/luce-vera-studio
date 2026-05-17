@@ -3,6 +3,8 @@ import ritratto from "@/assets/andrea-ritratto.jpg";
 import { SensoryDivider } from "@/components/sensory-divider";
 import { MarqueeLuoghi } from "@/components/marquee-luoghi";
 import { abs } from "@/lib/site";
+import { Reveal } from "@/components/reveal";
+import { REVEAL_STAGGER } from "@/lib/motion";
 
 export const Route = createFileRoute("/chi-sono")({
   component: ChiSono,
@@ -53,9 +55,10 @@ function ChiSono() {
   return (
     <>
       {/* HERO con ritratto */}
-      <section className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
+      <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
+            {/* IMMAGINE PROVVISORIA — placeholder ritratto, da sostituire con foto reale di Andrea */}
             <img
               src={ritratto}
               alt="Ritratto di Andrea Detommaso"
@@ -64,7 +67,7 @@ function ChiSono() {
               className="h-full w-full object-cover"
             />
             <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
-              immagine segnaposto
+              immagine provvisoria
             </span>
           </div>
           <div>
@@ -80,14 +83,14 @@ function ChiSono() {
             </p>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* LE TRE TAPPE */}
       <section className="bg-[var(--avorio)] pb-24 md:pb-32">
         <div className="mx-auto max-w-3xl px-6">
           <div className="flex flex-col gap-20 md:gap-28">
-            {tappe.map((t) => (
-              <article key={t.title}>
+            {tappe.map((t, i) => (
+              <Reveal as="article" key={t.title} delay={i * REVEAL_STAGGER}>
                 <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
                   {t.eyebrow}
                 </p>
@@ -97,22 +100,26 @@ function ChiSono() {
                 <p className="mt-6 text-lg leading-relaxed text-foreground/80">
                   {t.body}
                 </p>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* PULL-QUOTE via SensoryDivider */}
-      <SensoryDivider>
-        Si possono capire, aiutare e amare gli altri solo nella misura in cui si capisce, si aiuta e si ama se stessi.
-      </SensoryDivider>
+      <Reveal>
+        <SensoryDivider>
+          Si possono capire, aiutare e amare gli altri solo nella misura in cui si capisce, si aiuta e si ama se stessi.
+        </SensoryDivider>
+      </Reveal>
 
       {/* MARQUEE LUOGHI */}
-      <MarqueeLuoghi />
+      <Reveal>
+        <MarqueeLuoghi />
+      </Reveal>
 
       {/* CTA FINALE */}
-      <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+      <Reveal as="section" className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Se è questo che cerchi, siamo nel posto{" "}
@@ -127,7 +134,7 @@ function ChiSono() {
             </Link>
           </div>
         </div>
-      </section>
+      </Reveal>
     </>
   );
 }
