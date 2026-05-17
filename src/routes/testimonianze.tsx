@@ -8,11 +8,9 @@ import {
 import { testimonianze } from "@/lib/testimonianze";
 import { abs } from "@/lib/site";
 import { SealMark } from "@/components/seal-mark";
-import { AtmosphereHero, AtmosphereBand } from "@/components/atmosphere-hero";
-import { Reveal } from "@/components/reveal";
+import { AtmosphereHero } from "@/components/atmosphere-hero";
 // SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
 import atmosTestim from "@/assets/atmos-testimonianze.jpg";
-import atmosCammino from "@/assets/atmos-cammino.jpg";
 
 export const Route = createFileRoute("/testimonianze")({
   component: TestimonianzePage,
@@ -146,15 +144,6 @@ function TestimonianzePage() {
           </div>
         </div>
       </section>
-
-      {/* SFONDO ATMOSFERA intermedio — spezza la lista, no nuovo copy */}
-      <Reveal>
-        <AtmosphereBand
-          image={atmosCammino}
-          alt="Atmosfera di sentiero in pietra tra la nebbia"
-          tone="scuro"
-        />
-      </Reveal>
 
       {/* Lista — seconda parte */}
       <section className="relative overflow-hidden py-12 md:py-20">
