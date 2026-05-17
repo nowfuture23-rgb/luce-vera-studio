@@ -6,6 +6,11 @@ import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
 import { SealMark } from "@/components/seal-mark";
+import { AtmosphereHero, AtmosphereBand } from "@/components/atmosphere-hero";
+// SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
+import atmosChiSono from "@/assets/atmos-chi-sono.jpg";
+import atmosTestim from "@/assets/atmos-testimonianze.jpg";
+import atmosCtaNotte from "@/assets/atmos-cta-notte.jpg";
 
 export const Route = createFileRoute("/chi-sono")({
   component: ChiSono,
@@ -55,8 +60,15 @@ const tappe: Tappa[] = [
 function ChiSono() {
   return (
     <>
-      {/* HERO con ritratto */}
-      <Reveal as="section" className="bg-[var(--avorio)] pt-32 pb-20 md:pt-40 md:pb-28">
+      {/* HERO con ritratto + SFONDO ATMOSFERA */}
+      <AtmosphereHero
+        image={atmosChiSono}
+        alt="Atmosfera di luce calda da finestra in stanza silenziosa"
+        tone="chiaro"
+        eager
+        minH="min-h-[60svh]"
+        className="pt-32 pb-20 md:pt-40 md:pb-28"
+      >
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
           <div className="media-frame relative aspect-[4/5] w-full overflow-hidden bg-[var(--notte)]/10">
             {/* IMMAGINE PROVVISORIA — placeholder ritratto, da sostituire con foto reale di Andrea */}
@@ -84,7 +96,7 @@ function ChiSono() {
             </p>
           </div>
         </div>
-      </Reveal>
+      </AtmosphereHero>
 
       {/* LE TRE TAPPE */}
       <section className="relative overflow-hidden bg-[var(--avorio)] pb-24 md:pb-32">
@@ -92,7 +104,7 @@ function ChiSono() {
           tone="oro"
           className="pointer-events-none absolute -right-44 top-24 z-0 h-[520px] w-[520px] opacity-[0.06] md:h-[700px] md:w-[700px]"
         />
-        <div className="relative z-10 mx-auto max-w-3xl px-6">
+        <div className="relative z-10 mx-auto max-w-3xl px-6 pt-24 md:pt-32">
           <div className="flex flex-col gap-20 md:gap-28">
             {tappe.map((t, i) => (
               <Reveal as="article" key={t.title} delay={i * REVEAL_STAGGER}>
@@ -111,6 +123,15 @@ function ChiSono() {
         </div>
       </section>
 
+      {/* SFONDO ATMOSFERA intermedio — generico evocativo, no nuovo copy */}
+      <Reveal>
+        <AtmosphereBand
+          image={atmosTestim}
+          alt="Atmosfera di colline all'alba"
+          tone="scuro"
+        />
+      </Reveal>
+
       {/* PULL-QUOTE via SensoryDivider */}
       <Reveal>
         <SensoryDivider>
@@ -123,9 +144,21 @@ function ChiSono() {
         <MarqueeLuoghi />
       </Reveal>
 
-      {/* CTA FINALE */}
-      <Reveal as="section" className="notte-aura bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      {/* CTA FINALE — notte arricchita da SFONDO ATMOSFERA scuro */}
+      <Reveal as="section" className="notte-aura relative overflow-hidden bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
+        {/* SFONDO ATMOSFERA — generico evocativo, non contenuto specifico */}
+        <img
+          src={atmosCtaNotte}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          width={1920}
+          height={1080}
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[var(--notte)]/75" />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Se è questo che cerchi, siamo nel posto{" "}
             <span className="italic-oro">giusto</span>

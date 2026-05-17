@@ -4,6 +4,10 @@ import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
 import { SealMark } from "@/components/seal-mark";
+import { AtmosphereHero, AtmosphereBand } from "@/components/atmosphere-hero";
+// SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
+import atmosScritti from "@/assets/atmos-scritti.jpg";
+import atmosCammino from "@/assets/atmos-cammino.jpg";
 
 export const Route = createFileRoute("/scritti")({
   component: ScrittiIndex,
@@ -31,24 +35,31 @@ export const Route = createFileRoute("/scritti")({
 function ScrittiIndex() {
   return (
     <div className="bg-[var(--avorio)]">
-      {/* Hero */}
-      <Reveal as="section" className="pt-32 pb-16 md:pt-40 md:pb-20">
+      {/* Hero con SFONDO ATMOSFERA */}
+      <AtmosphereHero
+        image={atmosScritti}
+        alt="Atmosfera di candela e fogli scritti in luce calda"
+        tone="scuro"
+        eager
+        minH="min-h-[55svh]"
+        className="pt-32 pb-16 md:pt-40 md:pb-20"
+      >
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
             Scritti
           </p>
-          <h1 className="mt-6 font-display text-4xl leading-tight md:text-6xl">
+          <h1 className="mt-6 font-display text-4xl leading-tight text-[var(--avorio)] md:text-6xl">
             Pensieri lungo il <span className="italic-oro">cammino</span>
           </h1>
-          <p className="mt-8 text-lg leading-relaxed text-foreground/80 md:text-xl">
+          <p className="mt-8 text-lg leading-relaxed text-[var(--avorio)]/85 md:text-xl">
             Appunti, preparazioni, significati. Ciò che scrivo tra
             un'esperienza e l'altra, per chi cammina.
           </p>
         </div>
-      </Reveal>
+      </AtmosphereHero>
 
       {/* Riga di stato */}
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-3xl px-6 pt-16">
         <p className="text-center font-display text-sm italic text-foreground/50">
           Articoli di esempio — i contenuti reali saranno pubblicati qui.
         </p>
@@ -90,6 +101,15 @@ function ScrittiIndex() {
           </ul>
         </div>
       </section>
+
+      {/* SFONDO ATMOSFERA intermedio — generico evocativo, no nuovo copy */}
+      <Reveal>
+        <AtmosphereBand
+          image={atmosCammino}
+          alt="Atmosfera di sentiero in pietra tra la nebbia"
+          tone="scuro"
+        />
+      </Reveal>
     </div>
   );
 }
