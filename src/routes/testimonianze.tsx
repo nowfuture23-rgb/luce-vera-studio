@@ -88,7 +88,7 @@ function TestimonianzePage() {
       <section className="relative overflow-hidden pt-32 pb-12 md:pt-40 md:pb-16">
         <SealMark
           tone="oro"
-          className="pointer-events-none absolute -left-32 -top-24 z-0 h-[460px] w-[460px] opacity-[0.05] md:h-[600px] md:w-[600px]"
+          className="pointer-events-none absolute -left-32 -top-24 z-0 h-[460px] w-[460px] opacity-[0.08] md:h-[600px] md:w-[600px]"
         />
         <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
@@ -113,8 +113,12 @@ function TestimonianzePage() {
       </div>
 
       {/* Lista */}
-      <section className="py-12 md:py-20">
-        <div className="mx-auto max-w-2xl px-6">
+      <section className="relative overflow-hidden py-12 md:py-20">
+        <SealMark
+          tone="oro"
+          className="pointer-events-none absolute -right-40 top-1/2 z-0 h-[520px] w-[520px] -translate-y-1/2 opacity-[0.07] md:h-[700px] md:w-[700px]"
+        />
+        <div className="relative z-10 mx-auto max-w-2xl px-6">
           <div className="divide-y divide-[var(--notte)]/10">
             {testimonianze.map((t) => (
               <TestimonianzaItem
