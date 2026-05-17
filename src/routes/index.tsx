@@ -9,6 +9,7 @@ import { SensoryDivider } from "@/components/sensory-divider";
 import { SITE_URL, abs } from "@/lib/site";
 import { Reveal, Parallax, useHeroMount } from "@/components/reveal";
 import { REVEAL_STAGGER, HERO_TEXT_DELAY_AFTER_VEIL } from "@/lib/motion";
+import { SealMark } from "@/components/seal-mark";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -152,7 +153,7 @@ function Index() {
                 to="/il-cammino"
                 className="porta-card group block"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-[var(--notte)]">
+                <div className="media-frame relative aspect-[3/4] overflow-hidden bg-[var(--notte)]">
                   {/* IMMAGINE PROVVISORIA — sostituire con foto reale */}
                   <img
                     src={p.img}
@@ -160,13 +161,12 @@ function Index() {
                     loading="lazy"
                     width={1080}
                     height={1440}
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                    className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--notte)]/80 via-transparent to-transparent" />
-                  <span className="absolute top-6 left-6 font-display text-3xl italic text-[var(--oro)] md:text-4xl">
+                  <span className="media-badge absolute top-6 left-6 font-display text-3xl italic text-[var(--oro)] md:text-4xl">
                     {p.roman}
                   </span>
-                  <span className="absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
+                  <span className="media-badge absolute bottom-3 left-3 rounded-sm bg-[var(--notte)]/60 px-2 py-1 text-[10px] uppercase tracking-widest text-[var(--avorio)]/80">
                     immagine provvisoria
                   </span>
                 </div>
@@ -263,8 +263,12 @@ function Index() {
       </section>
 
       {/* CTA FINALE */}
-      <section className="bg-[var(--avorio)] py-28 md:py-40">
-        <Reveal className="mx-auto max-w-3xl px-6 text-center md:px-10">
+      <section className="relative overflow-hidden bg-[var(--avorio)] py-28 md:py-40">
+        <SealMark
+          tone="oro"
+          className="pointer-events-none absolute -left-32 -bottom-40 z-0 h-[500px] w-[500px] opacity-[0.04] md:h-[680px] md:w-[680px]"
+        />
+        <Reveal className="relative z-10 mx-auto max-w-3xl px-6 text-center md:px-10">
           <h2 className="font-display text-3xl leading-tight md:text-5xl">
             Se qualcosa, in queste parole, ha riconosciuto{" "}
             <span className="italic-oro">qualcosa in te</span> — non è un caso.
