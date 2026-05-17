@@ -6,10 +6,9 @@ import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
 import { SealMark } from "@/components/seal-mark";
-import { AtmosphereHero, AtmosphereBand } from "@/components/atmosphere-hero";
+import { AtmosphereHero } from "@/components/atmosphere-hero";
 // SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
 import atmosChiSono from "@/assets/atmos-chi-sono.jpg";
-import atmosTestim from "@/assets/atmos-testimonianze.jpg";
 import atmosCtaNotte from "@/assets/atmos-cta-notte.jpg";
 
 export const Route = createFileRoute("/chi-sono")({
@@ -122,15 +121,6 @@ function ChiSono() {
           </div>
         </div>
       </section>
-
-      {/* SFONDO ATMOSFERA intermedio — generico evocativo, no nuovo copy */}
-      <Reveal>
-        <AtmosphereBand
-          image={atmosTestim}
-          alt="Atmosfera di colline all'alba"
-          tone="scuro"
-        />
-      </Reveal>
 
       {/* PULL-QUOTE via SensoryDivider */}
       <Reveal>

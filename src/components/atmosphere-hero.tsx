@@ -40,7 +40,7 @@ export function AtmosphereHero({
         width={1920}
         height={1080}
         className={`absolute inset-0 h-full w-full object-cover ${
-          isScuro ? "opacity-60" : "opacity-55"
+          isScuro ? "opacity-80" : "opacity-75"
         }`}
       />
       {/* Velo gradiente per contrasto AA */}
@@ -48,11 +48,13 @@ export function AtmosphereHero({
         aria-hidden
         className={
           isScuro
-            ? "absolute inset-0 bg-gradient-to-b from-[var(--notte)]/40 via-[var(--notte)]/55 to-[var(--notte)]/85"
-            : "absolute inset-0 bg-gradient-to-b from-[var(--avorio)]/85 via-[var(--avorio)]/70 to-[var(--avorio)]/90"
+            ? "absolute inset-0 bg-gradient-to-b from-[var(--notte)]/15 via-[var(--notte)]/35 to-[var(--notte)]/80"
+            : "absolute inset-0 bg-gradient-to-b from-[var(--avorio)]/40 via-[var(--avorio)]/55 to-[var(--avorio)]/85"
         }
       />
-      <div className="relative z-10 w-full">{children}</div>
+      <div className="relative z-10 w-full [text-shadow:0_1px_2px_rgb(0_0_0_/_0.25)]">
+        {children}
+      </div>
     </section>
   );
 }

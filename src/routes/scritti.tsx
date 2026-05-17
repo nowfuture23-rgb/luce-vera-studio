@@ -4,10 +4,9 @@ import { abs } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { REVEAL_STAGGER } from "@/lib/motion";
 import { SealMark } from "@/components/seal-mark";
-import { AtmosphereHero, AtmosphereBand } from "@/components/atmosphere-hero";
+import { AtmosphereHero } from "@/components/atmosphere-hero";
 // SFONDO ATMOSFERA — generico evocativo, non contenuto specifico
 import atmosScritti from "@/assets/atmos-scritti.jpg";
-import atmosCammino from "@/assets/atmos-cammino.jpg";
 
 export const Route = createFileRoute("/scritti")({
   component: ScrittiIndex,
@@ -101,15 +100,6 @@ function ScrittiIndex() {
           </ul>
         </div>
       </section>
-
-      {/* SFONDO ATMOSFERA intermedio — generico evocativo, no nuovo copy */}
-      <Reveal>
-        <AtmosphereBand
-          image={atmosCammino}
-          alt="Atmosfera di sentiero in pietra tra la nebbia"
-          tone="scuro"
-        />
-      </Reveal>
     </div>
   );
 }
