@@ -179,3 +179,61 @@
 .animate-marquee {
   animation: marquee 40s linear infinite;
 }
+
+/* Fade-in di rotta: brevissimo, solo opacity (GPU-cheap). */
+@keyframes route-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.route-fade {
+  animation-name: route-fade-in;
+  animation-fill-mode: both;
+  will-change: opacity;
+}
+
+/* Hero: stati per velo gradiente e micro-movimento titolo. */
+.hero-veil {
+  transition: opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-title {
+  transition:
+    opacity 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1400ms cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, letter-spacing;
+}
+.hero-title[data-mounted="false"] {
+  opacity: 0;
+  transform: scale(0.985);
+  letter-spacing: 0.005em;
+}
+.hero-title[data-mounted="true"] {
+  opacity: 1;
+  transform: scale(1);
+  letter-spacing: -0.01em;
+}
+
+/* Hover micro-elevazione per le card delle Tre Porte. */
+.porta-card {
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.porta-card:hover {
+  transform: translate3d(0, -4px, 0);
+}
+
+/* Rispetto totale di prefers-reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  .route-fade,
+  .hero-veil,
+  .hero-title,
+  .porta-card,
+  .animate-marquee {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-title[data-mounted="false"] {
+    opacity: 1 !important;
+    transform: none !important;
+    letter-spacing: -0.01em !important;
+  }
+}
