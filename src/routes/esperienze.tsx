@@ -208,6 +208,64 @@ function Esperienze() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="bg-[var(--avorio)] py-24 md:py-32">
+        <div className="mx-auto max-w-3xl px-6 md:px-10">
+          <div className="text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+              Domande
+            </p>
+            <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+              Prima di <span className="italic-oro">scrivermi</span>
+            </h2>
+          </div>
+
+          <Accordion type="single" collapsible className="mt-14">
+            {faq.map((item, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="border-b border-[var(--notte)]/15"
+              >
+                <AccordionTrigger className="py-6 font-display text-xl leading-snug text-foreground md:text-2xl hover:no-underline">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 pt-0 text-base leading-relaxed text-foreground/80 md:text-[1.05rem]">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* PRENOTAZIONI — predisposizione */}
+      <section className="bg-[var(--avorio)] pb-24 md:pb-32">
+        <div className="mx-auto max-w-3xl px-6 text-center md:px-10">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--oro)]">
+            Prenotazioni
+          </p>
+          <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+            Come si prenota
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/80 md:text-lg">
+            Per ora ogni esperienza si prenota scrivendomi direttamente: ti
+            rispondo io, valutiamo insieme e ti guido all'iscrizione. Presto
+            questa sezione ospiterà la prenotazione e il pagamento online,
+            esperienza per esperienza.
+          </p>
+          {/* PUNTO DI AGGANCIO: qui andrà il sistema di prenotazione/pagamento per esperienza — vedi array `esperienze` */}
+          <div className="mt-8">
+            <Link
+              to="/contatti"
+              className="text-sm uppercase tracking-[0.25em] text-[var(--notte)]/70 underline decoration-[var(--oro)]/60 decoration-1 underline-offset-[6px] transition-colors hover:text-[var(--oro)]"
+            >
+              Scrivimi
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA FINALE */}
       <section className="bg-[var(--notte)] py-24 text-[var(--avorio)] md:py-32">
         <div className="mx-auto max-w-3xl px-6 text-center">
